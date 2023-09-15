@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import Time from './Time.js';
-import './CalendarStyles.css';
+import './Calendar.css';
 import EventController from '../../controller/EventController.js';
 
-function CalendarComponent() {
-  const [date, setDate] = useState(new Date());
+function CalendarComponent({ selectedDate, setSelectedDate}) {
   const [showTime, setShowTime] = useState(false);
   const [selectedDateEvents, setSelectedDateEvents] = useState([]);
 
@@ -16,17 +15,20 @@ function CalendarComponent() {
 
   useEffect(() => {
     // Get events for the selected date
-    const events = EventController.getEventsForDate(date);
+    const events = EventController.getEventsForDate(selectedDate);
     setSelectedDateEvents(events);
-  }, [date]);
+
+    // Update the selected date in the parent component
+    setSelectedDate(selectedDate);
+  }, [selectedDate, setSelectedDate]);
 
   return (
     <div className='calendarContainer'>
 
       <Time />
       <Calendar 
-        onChange={setDate} 
-        value={date} 
+        onChange={setSelectedDate} 
+        value={selectedDate} 
         onClickDay={() => setShowTime(true)} 
         tileContent={({ date, view }) => {
           if (view === 'month') {
@@ -34,22 +36,7 @@ function CalendarComponent() {
             return events.length > 0 && <div className="event-indicator" />;
           }
         }}
-          />
-      {date.length > 0 ? (
-        // Displays multiple select dates
-        <p>
-          <span>Start:</span>
-          {date[0].toDateString()}
-          &nbsp;
-          &nbsp;
-          <span>End:</span>{date[1].toDateString()}
-        </p>
-      ) : (
-        // Displays the selected date
-        <p className='selDate'>
-          <span>Selected date:</span> {date.toDateString()} 
-        </p>
-      )}
+      />
     </div>
   );
 }
