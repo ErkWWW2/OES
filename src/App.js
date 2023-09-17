@@ -1,6 +1,6 @@
 import './App.css';
 import { } from '@mui/material';
-import LoginController from '/Users/sami/Documents/ONSHUDLEE/OES/src/controller/LoginCotroller.js';
+import LoginController from './controller/LoginCotroller.js';
 
 function App() {
   return (

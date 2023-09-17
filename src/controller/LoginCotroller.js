@@ -1,7 +1,7 @@
 // controllers/LoginController.js
 import React, { useState } from 'react';
-import LoginForm from '/Users/sami/Documents/ONSHUDLEE/OES/src/view/LoginView.js';
-import { validateForm } from '/Users/sami/Documents/ONSHUDLEE/OES/src/model/LoginModel.js';
+import LoginForm from '../view/LoginView.js';
+import { validateForm } from '../model/LoginModel.js';
 
 function LoginController() {
     const [errors, setErrors] = useState({});
