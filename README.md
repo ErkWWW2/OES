@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Install react-router-dom:
 You can install react-router-dom using npm:
 ```
+npm install 
 npm install react-router-dom
 ```
 <br>
