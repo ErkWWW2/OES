@@ -8,6 +8,7 @@
 
     --date-font: 30px;
     --date-font-l: 60px;
+    --date-font-s: 20px;
 }
 
 .selDate {
@@ -28,4 +29,10 @@
 .day {
     font-size: var(--date-font);
 }
-  
+
+.weekday {
+    font-size: var(--date-font-s);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    color:#818181;
+}  

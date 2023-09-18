@@ -33,6 +33,10 @@
 /* Top of Calendar Navigation */
 
 /* Calendar Day Tiles */
+.react-calendar__month-view__days {
+  height: 95vh;
+}
+
 .react-calendar__month-view__weekdays {
   text-align: center;
   background-color: #f0f0f0;
@@ -44,7 +48,6 @@
   display: flex;
   padding: 0.5% 1%;
   justify-content: center;
-  height: 19vh;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -70,6 +73,24 @@
 }
 /* Calendar Overflow Day Tiles */
 /* Calendar Day Tiles */
+
+/* Calendar Month View Tiles */ 
+.react-calendar__year-view__months {
+  height: 95vh;
+}
+/* Calendar Month View Tiles */ 
+
+/* Calendar Month View Tiles */ 
+.react-calendar__decade-view__years {
+  height: 95vh;
+}
+/* Calendar Month View Tiles */ 
+
+/* Calendar Month View Tiles */ 
+.react-calendar__century-view__decades {
+  height: 95vh;
+}
+/* Calendar Month View Tiles */ 
 
 .event-indicator {
   top: 2px;
