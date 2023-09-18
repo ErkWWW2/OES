@@ -30,4 +30,27 @@ class UserModel
             }
         ];
     }
+
+    getAllUsers() //Returns all users
+    {
+        return this.users;
+    }
+
+    getUserById(id) //Returns a specific user based on submitted ID
+    {
+        return this.users.find((user) => user.id === id);
+    }
+
+    addUser(user) //Adds a user (HIGHLY TEMPORARY, will most likely change)
+    {
+        newUser.id = this.users.length + 1;
+        newUser.username = user[0];
+        newUser.password = user[1];
+        newUser.email = user[2];
+        newUser.role = user[3];
+        this.users.push(newUser);
+        return newUser;
+    }
 }
+
+export default UserModel;
