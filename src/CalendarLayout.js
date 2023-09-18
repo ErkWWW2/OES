@@ -3,7 +3,7 @@ import Sidebar from './components/Calendar/CalendarSidebar'; // Import the Sideb
 import Calendar from './components/Calendar/Calendar'; // Import the Calendar component
 import './CalendarLayout.css'; // Import the CSS for your layout
 
-function Layout() {
+function CalendarLayout() {
   const [date, setDate] = useState(new Date());
 
   return (
@@ -14,4 +14,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default CalendarLayout;
