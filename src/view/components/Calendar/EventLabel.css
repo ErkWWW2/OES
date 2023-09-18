@@ -1,7 +1,9 @@
 .eventLabel {
-    background-color: #3498db; /* Background color for the event label */
-    color: #fff; /* Text color */
-    padding: 10px; /* Padding around the label */
-    border-radius: 5px; /* Rounded corners */
-    margin-bottom: 5px; /* Margin between labels if there are multiple */
-  }
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}

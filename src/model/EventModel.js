@@ -1,5 +1,19 @@
 //Model for events
 const EventModel = {
+  events: [],
+  
+  fetchEvents: () => {
+    EventModel.events = [
+      { date: '2023-09-15', title: 'Event 1' },
+      { date: '2023-09-20', title: 'Event 2' }
+    ];
+  },
+
+  getEventsForDate: (date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    return EventModel.events.filter(event => event.date === dateStr);
+  },
+  /*
   eventDates: [], // Array for event dates with date, event id, and time
   eventDetails: [], // Array for event details with event id, event name, and event description
 
@@ -17,7 +31,7 @@ const EventModel = {
     ];
   },
 
-  getEventDatesForDate: (date) => {
+  getEventsFromDate: (date) => {
     const dateStr = date.toISOString().split('T')[0];
     return EventModel.eventDates.filter(eventDate => eventDate.date === dateStr);
   },
@@ -25,6 +39,7 @@ const EventModel = {
   getEventDetails: (eventId) => {
     return EventModel.eventDetails.find(eventDetail => eventDetail.eventId === eventId);
   }
+  */
 };
 
 export default EventModel;
