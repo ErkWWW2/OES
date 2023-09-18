@@ -10,9 +10,9 @@ function App() {
       <div className="App">
         <div className='content'>
           <Routes>
-            <Route exact path='/' element={<Navigate to='/login' replace />} />
-            <Route path='/calendar' element={<CalendarLayout />} />
-            <Route path='/login' element={<LoginController />} />
+            <Route exact path='/' element={<LoginController/>}></Route>
+            <Route path="/calendar" element={<CalendarLayout />} />
+            <Route path="/login" element={<LoginController />} />
           </Routes>
         </div>
       </div>
@@ -21,3 +21,4 @@ function App() {
 }
 
 export default App;
+//<Route exact path='/' element={<Navigate to='/login' replace />} />
