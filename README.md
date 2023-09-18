@@ -6,14 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 
-## Create a React Project:
-First, make sure you have Node.js and npm installed. If not, download and install them from the official website: https://nodejs.org/
-Then, create a new React project if you haven't already:
-```
-npx create-react-app my-app
-cd my-app
-```
-<br>
 
 ## Install react-router-dom:
 You can install react-router-dom using npm:
