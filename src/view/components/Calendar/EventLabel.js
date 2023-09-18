@@ -1,12 +1,15 @@
 import React from 'react';
-import './EventLabel.css';
+import './EventLabel.css'; // Import the CSS file
 
-function EventLabel({ /*id, name, description, participants, creator*/ }) {
+function EventLabel({ event }) {
+    const { name, starttime, endtime } = event;
+  
     return (
-        <div className='eventLabel'>
-            {/*<p>{name}</p>*/}
-        </div>
+      <div className='eventLabel'>
+        <p>{name}</p>
+        <p>{starttime.toLocaleTimeString()} - {endtime.toLocaleTimeString()}</p>
+      </div>
     );
-}
+  }
 
 export default EventLabel;
