@@ -49,17 +49,26 @@ class EventModel
     }
 
     getEventsForDate(date){
-      console.log(this.eventDates[0].id.toString);
+      
+      let eventIds = [];
+      let eventIdsIndex = 0;
 
-      const eventIds = this.eventDates.filter(eventDate => {
-        return (
-          eventDate.date.getFullYear() === date.getFullYear() &&
-          eventDate.date.getMonth() === date.getMonth() &&
-          eventDate.date.getDate() === date.getDate()
-        );
-      }).map(eventDate => eventDate.id);
+      let dates = [];
+      let datesIndex = 0;
 
-      const dates = this.events.filter(event => eventIds.includes(event.id));
+      for (let i = 0; i < 3; i++) {
+        if (this.eventDates[i].date === date) {
+          eventIds[eventIdsIndex] = this.eventDates[i].id;
+          eventIdsIndex++;
+        }
+      }
+
+      for(let i = 0; i < 2; i++) {
+        if (this.events[i].id === eventIds[i]) {
+          dates[datesIndex] = this.events[i];
+          datesIndex++;
+        }
+      }
 
       return dates;
     }

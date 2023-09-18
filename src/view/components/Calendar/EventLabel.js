@@ -1,11 +1,10 @@
 import React from 'react';
+import './EventLabel.css';
 
-function EventLabel({ name, starttime, endtime }) {
-
+function EventLabel({ /*id, name, description, participants, creator*/ }) {
     return (
         <div className='eventLabel'>
-            <p>{name}</p>
-            <p>{starttime.toLocaleTimeString()} - {endtime.toLocaleTimeString()}</p>
+            {/*<p>{name}</p>*/}
         </div>
     );
 }
