@@ -49,7 +49,6 @@ class EventModel
     }
 
     getEventsForDate(date){
-      console.log(date);
       console.log(this.eventDates[0].id.toString);
 
       const eventIds = this.eventDates.filter(eventDate => {
@@ -66,6 +65,4 @@ class EventModel
     }
 }
 
-const eventModel = new EventModel();
-
-export default eventModel;
+export default EventModel;

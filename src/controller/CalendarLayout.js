@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Sidebar from '../view/components/Calendar/CalendarSidebar'; // Import the Sidebar component
 import Calendar from '../view/components/Calendar/Calendar'; // Import the Calendar component
-import eventModel from '../model/EventModel'; // Import the Data for the events
+import EventModel from '../model/EventModel'; // Import the Data for the events
 import './CalendarLayout.css'; // Import the CSS for your layout
 
 function CalendarLayout() {
+  const eventModel = new EventModel();
   const [date, setDate] = useState(new Date());
   const [events, getEvents] = useState([] );
 
