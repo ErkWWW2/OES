@@ -5,8 +5,16 @@ const EventController = {
     EventModel.fetchEvents();
   },
 
+  getEvents: () => {
+    return EventModel.eventDetails;
+  },
+
+  getEventDates: () => {
+    return EventModel.eventDates;
+  },
+
   getEventsForDate: (date) => {
-    return EventModel.getEventsForDate(date);
+    return EventModel.getEventIdsFromDate(date);
   },
 };
 

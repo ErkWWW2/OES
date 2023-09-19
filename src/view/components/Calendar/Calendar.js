@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Calendar from 'react-calendar';
-import Time from './Time.js';
+import EventController from '../../../controller/EventController.js';
 import './Calendar.css';
-import EventController from '../../controller/EventController.js';
 
-function CalendarComponent({ selectedDate, setSelectedDate}) {
-  
-
-  const [selectedDateEvents, setSelectedDateEvents] = useState([]);
+function CalendarComponent({ selectedDate, setSelectedDate }) {
 
   useEffect(() => {
-    // Fetch events using the controller when the component mounts
     EventController.fetchEvents();
-  });
-
-  useEffect(() => {
-    // Get events for the selected date
     const events = EventController.getEventsForDate(selectedDate);
-    setSelectedDateEvents(events);
-
     // Update the selected date in the parent component
     setSelectedDate(selectedDate);
   }, [selectedDate, setSelectedDate]);
 
   return (
     <div className='calendarContainer'>
-
-      <Time />
       <Calendar 
         onChange={setSelectedDate} 
         value={selectedDate}
         tileContent={({ date, view }) => {
           if (view === 'month') {
             const events = EventController.getEventsForDate(date);
-            return events.length > 0 && <div className="event-indicator" />;
+            return events.length > 0 && <div className='event-indicator' />;
           }
         }}
       />
