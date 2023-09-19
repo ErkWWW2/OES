@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Calendar from 'react-calendar';
-import EventLabel from './EventLabel.js';
 import EventController from '../../../controller/EventController.js';
-import Time from './Time.js';
 import './Calendar.css';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {
@@ -16,8 +14,6 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
 
   return (
     <div className='calendarContainer'>
-
-      <Time />
       <Calendar 
         onChange={setSelectedDate} 
         value={selectedDate}
