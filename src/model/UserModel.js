@@ -10,7 +10,6 @@ class UserModel
                 username: "admin",
                 password: "admin",
                 email: "admin@example.com",
-                role: "admin"
             },
             {
                 //Event Organizer
@@ -18,7 +17,6 @@ class UserModel
                 username: "organizer",
                 password: "organizer",
                 email: "organizer@example.com",
-                role: "organizer"
             },
             {
                 //Event Participant
@@ -26,7 +24,6 @@ class UserModel
                 username: "participant",
                 password: "participant",
                 email: "participant@example.com",
-                role: "participant"
             }
         ];
     }
@@ -47,7 +44,6 @@ class UserModel
         newUser.username = user[0];
         newUser.password = user[1];
         newUser.email = user[2];
-        newUser.role = user[3];
         this.users.push(newUser);
         return newUser;
     }
