@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EventController from "../../../controller/EventController";
+import EventController from "../../../../server/EventController";
 import { Grid } from '@mui/material';
 import './EventView.css';
 

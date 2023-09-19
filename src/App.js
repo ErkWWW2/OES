@@ -1,9 +1,9 @@
 import './App.css';
 import { } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import LoginController from './controller/LoginCotroller.js';
-import CalendarLayout from './view/CalendarLayout';
-import EventLayout from './view/EventLayout';
+import LoginController from './server/LoginCotroller.js';
+import CalendarLayout from './components/App/CalendarLayout/CalendarLayout';
+import EventLayout from './components/App/EventLayout/EventLayout';
 
 function App() {
   return (

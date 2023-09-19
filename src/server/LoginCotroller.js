@@ -1,6 +1,6 @@
 // controllers/LoginController.js
 import React, { useState } from 'react';
-import LoginForm from '../view/LoginView.js';
+import LoginForm from '../components/login/LoginView.js';
 import { validateForm } from '../model/LoginModel.js';
 
 function LoginController() {

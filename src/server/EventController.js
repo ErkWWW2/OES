@@ -13,8 +13,8 @@ const EventController = {
     return EventModel.eventDates;
   },
 
-  getEventsForDate: (date) => {
-    return EventModel.getEventIdsFromDate(date);
+  getDateForEvent: (id) => {
+    return (EventModel.eventDates.filter(event => event.eventId === id));
   },
 };
 
