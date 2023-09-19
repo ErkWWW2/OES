@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './LoginView.css';
-import AnimatedText from '/Users/sami/Documents/ONSHUDLEE/OES/src/components/Animated.js';
+import AnimatedText from '../Animated.js';
 
 
 function LoginForm({ onSubmit, errors }) {

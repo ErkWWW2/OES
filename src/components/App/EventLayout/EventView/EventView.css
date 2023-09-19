@@ -1,0 +1,32 @@
+.grid {
+    width: 75vw;
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+
+.MuiGrid-root {
+    width: 75vw;
+    margin: 0 0 0 20;
+
+}
+
+.eventBox {
+    height: 100%;
+    width: 100%;
+    background-color: darkcyan;
+    border-radius: 10px;
+}
+
+.eventContent {
+    height: 95%;
+    width: 95%;
+    padding: 1%;
+}
+
+.eventContent h2 {
+    margin-bottom: 0;
+}
+
+.eventContent p {
+    margin-top: 0;
+}

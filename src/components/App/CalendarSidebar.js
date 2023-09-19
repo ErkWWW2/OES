@@ -26,16 +26,16 @@ function getWeekDay(date) {
 
 function Sidebar({ selectedDate }) {
   // Extract year, month, and day from the date
-  const year = selectedDate ? selectedDate.getFullYear() : '---';
+  const year = selectedDate ? '- ' + selectedDate.getFullYear() : '';
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June', 
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  const month = selectedDate ? monthNames[selectedDate.getMonth()] : '---';
-  const day = selectedDate ? getDayWithSuffix(selectedDate.getDate()) : '---';
-  const weekday = selectedDate ? getWeekDay(selectedDate) : '---';
+  const month = selectedDate ? monthNames[selectedDate.getMonth()] : '';
+  const day = selectedDate ? getDayWithSuffix(selectedDate.getDate()) : '';
+  const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
   return (
     <div className='sidebar'>
@@ -43,7 +43,7 @@ function Sidebar({ selectedDate }) {
         {<span className='month'> {month} </span>}
         {<br/>}
         {<span className='day'> {day} </span>}
-        {<span className='year'> - {year} </span>}
+        {<span className='year'> {year} </span>}
         {<br></br>}
         {<span className='weekday'> {weekday} </span>}
       </p>
