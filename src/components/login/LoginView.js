@@ -6,11 +6,11 @@ import AnimatedText from "../Animated.js";
 
 function LoginForm({ onSubmit, errors }) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(name, email);
+    onSubmit(name, password);
   };
 
   return (
@@ -35,15 +35,15 @@ function LoginForm({ onSubmit, errors }) {
             <div className="formGroup">
               <input
                 type="text"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="password"
+                name="pwassword"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input"
                 placeholder="Enter your password"
               />
             </div>
-            {errors.email && <div className="error">{errors.email}</div>}
+            {errors.password && <div className="error">{errors.password}</div>}
 
             <input type="submit" value="Submit" className="submitButton" />
           </form>
