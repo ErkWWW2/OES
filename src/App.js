@@ -1,9 +1,10 @@
 import './App.css';
 import { } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginController from './server/LoginCotroller.js';
 import CalendarLayout from './components/App/CalendarLayout/CalendarLayout';
 import EventLayout from './components/App/EventLayout/EventLayout';
+import RegistrationPage from './server/RegistrationPage'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path='/calendar' element={<CalendarLayout />} />
             <Route path='/login' element={<LoginController />} />
             <Route path='/events' element={<EventLayout />} />
+            <Route path="/register" element={<RegistrationPage />} />
           </Routes>
         </div>
       </div>

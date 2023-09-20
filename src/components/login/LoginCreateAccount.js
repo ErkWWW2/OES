@@ -1,22 +1,22 @@
+// RegistrationForm.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-import "./LoginView.css";
 import AnimatedText from "../Animated.js";
 
-function LoginForm({ onSubmit, errors }) {
+function RegistrationForm({ onSubmit, errors }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(name, email);
+    onSubmit(name, email, password);
   };
 
   return (
     <div className="container">
       <div classNmae="left">
-        <h1 className="Header">Login</h1>
+        <h1 className="Header">Register</h1>
         <div className="formWrapper">
           <form onSubmit={handleSubmit}>
             <div className="formGroup">
@@ -40,25 +40,41 @@ function LoginForm({ onSubmit, errors }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input"
-                placeholder="Enter your password"
+                placeholder="Enter your email"
               />
             </div>
             {errors.email && <div className="error">{errors.email}</div>}
 
-            <input type="submit" value="Submit" className="submitButton" />
+            <div className="formGroup">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+                placeholder="Enter your password"
+              />
+            </div>
+            {errors.password && <div className="error">{errors.password}</div>}
+
+            <input type="submit" value="Register" className="submitButton" />
           </form>
         </div>
 
         <p className="create-account">
-          Don't have an account? <Link to="/register">Create one</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
 
       <div className="right">
-        <AnimatedText className="rightText" text="EEasy scheduling ahead!" />
+        <AnimatedText
+          className="rightText"
+          text="UUnlock a world of possibilities"
+        />
       </div>
     </div>
   );
 }
 
-export default LoginForm;
+export default RegistrationForm;
