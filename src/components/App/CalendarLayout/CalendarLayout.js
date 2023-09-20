@@ -8,7 +8,9 @@ function CalendarLayout() {
 
   return (
     <div className="layout">
-      <Sidebar selectedDate={date} />
+      <Sidebar 
+        selectedDate={date}
+        currentView={CalendarLayout} />
       <Calendar 
         selectedDate={date} 
         setSelectedDate={setDate} />

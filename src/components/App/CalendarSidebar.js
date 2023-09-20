@@ -1,4 +1,5 @@
 import React from 'react';
+import SideFooter from './SidebarFooter';
 import './CalendarSidebar.css';
 
 function getDayWithSuffix(day) {
@@ -24,7 +25,7 @@ function getWeekDay(date) {
   return dateFormatter.format(date);
 }
 
-function Sidebar({ selectedDate }) {
+function Sidebar({ selectedDate, currentView }) {
   // Extract year, month, and day from the date
   const year = selectedDate ? '- ' + selectedDate.getFullYear() : '';
 
@@ -47,6 +48,7 @@ function Sidebar({ selectedDate }) {
         {<br></br>}
         {<span className='weekday'> {weekday} </span>}
       </p>
+      <SideFooter className='footer' currentView={currentView} />
     </div>
   );
 }

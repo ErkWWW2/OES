@@ -7,7 +7,7 @@ function EventLayout() {
 
   return (
     <div className="layout">
-      <Sidebar />
+      <Sidebar currentView={EventLayout}/>
       <EventComponent />
     </div>
   );

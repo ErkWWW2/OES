@@ -21,16 +21,33 @@ function EventComponent() {
         console.log(eventDetails);
     }, []);
 
+    const events = {};
+    eventDates.forEach(eventDate => {
+        if (!events[eventDate.eventId]) {
+            events[eventDate.eventId] = [];
+        }
+
+        events[eventDate.eventId].push(eventDate);
+        console.log(events);
+    })
+
     return (
         <div className="grid">
-            <Grid container spacing={2}>
+            <Grid container spacing={2} gridTemplateColumns="repear(12, 3fr)">
                 {eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox">
                             <div className="eventContent">
                                 <h2>{event.name}</h2>
                                 <hr />
-                                <p>{event.description}</p>
+                                <div>
+                                    {events[event.eventId]?.map(item => (
+                                        <p key={item}>
+                                            <span>{'[' + item.votes + '] '}</span>
+                                            <span>{item.date.toDateString()}</span>
+                                        </p>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </Grid> 
