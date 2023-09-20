@@ -15,7 +15,7 @@ function LoginForm({ onSubmit, errors }) {
 
   return (
     <div className="container">
-      <div classNmae="left">
+      <div className="left">
         <h1 className="Header">Login</h1>
         <div className="formWrapper">
           <form onSubmit={handleSubmit}>
