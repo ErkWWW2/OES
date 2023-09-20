@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/login/LoginView.js';
-import UserModel from '../model/UserModel'; // Replace with the actual path
+import UserController from './UserController';
 
-function LoginController() {
+const LoginController = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const userModel = new UserModel(); // Create an instance of UserModel
+
+  const userController = UserController();  //Access to UserController
+  console.log(userController.users);
 
   const handleSubmit = (name, password) => {
 
-
     // if (Object.keys(validationErrors).length === 0) {
     // Attempt to find the user by username and password
-    const user = userModel.users.find(
+    const user = userController.users.find(
       (u) => u.username === name && u.password === password
     );
 

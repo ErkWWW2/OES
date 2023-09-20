@@ -1,53 +1,24 @@
-class UserModel {
-    constructor() {
-      // Generates a set of three users, one for each role
-      this.users = [
-        {
-          // Administrator
-          id: 1,
-          username: "admin",
-          password: "admin",
-          email: "admin@example.com",
-        },
-        {
-          // Event Organizer
-          id: 2,
-          username: "organizer",
-          password: "organizer",
-          email: "organizer@example.com",
-        },
-        {
-          // Event Participant
-          id: 3,
-          username: "participant",
-          password: "participant",
-          email: "participant@example.com",
-        },
-      ];
+
+const UserModel = [
+    {
+        id:         1,
+        username:   'IsacG',
+        email:      'IsacG@oes.com',
+        password:   'IsacG'
+    },
+    {
+        id:         2,
+        username:   'ErikW',
+        email:      'ErikW@oes.com',
+        password:   'ErikW'
+    },
+    {
+        id:         3,
+        username:   'SamiN',
+        email:      'SamiN@oes.com',
+        password:   'SamiN'
     }
-  
-    getAllUsers() {
-      // Returns all users
-      return this.users;
-    }
-  
-    getUserById(id) {
-      // Returns a specific user based on the submitted ID
-      return this.users.find((user) => user.id === id);
-    }
-  
-    addUser(user) {
-      // Adds a user (HIGHLY TEMPORARY, will most likely change)
-      const newUser = {
-        id: this.users.length + 1,
-        username: user[0],
-        password: user[1],
-        email: user[2],
-      };
-      this.users.push(newUser);
-      return newUser;
-    }
-  }
-  
-  export default UserModel;
+];
+
+export default UserModel;
   
