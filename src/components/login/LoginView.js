@@ -55,7 +55,7 @@ function LoginForm({ onSubmit, errors }) {
       </div>
 
       <div className="Loginright">
-        <AnimatedText className="rightText" text="EEasy scheduling ahead!" />
+        <AnimatedText className="AnimatedText" text="EEasy scheduling ahead!" />
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ function AnimatedText({ text }) {
   }, [text]);
 
   return (
-    <div className="header" style={animationStyle}>
+    <div className="AnimatedText" style={animationStyle}>
       {animatedText}
     </div>
   );

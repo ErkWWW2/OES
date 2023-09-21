@@ -62,7 +62,7 @@ function RegistrationForm({ onSubmit, errors }) {
           </form>
         </div>
 
-        <p className="create-account">
+        <p className="create-account" >
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
@@ -70,7 +70,7 @@ function RegistrationForm({ onSubmit, errors }) {
       <div className="Loginright">
         <AnimatedText
           className="rightText"
-          text="UUnlock a world of possibilities"
+          text="UUnlock a world of possibilities."
         />
       </div>
     </div>
