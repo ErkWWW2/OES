@@ -14,51 +14,51 @@ function RegistrationForm({ onSubmit, errors }) {
   };
 
   return (
-    <div className="container">
-      <div classNmae="left">
-        <h1 className="Header">Register</h1>
-        <div className="formWrapper">
+    <div className="Logincontainer">
+      <div classNmae="Loginleft">
+        <h1 className="LoginHeader">Register</h1>
+        <div className="LoginformWrapper">
           <form onSubmit={handleSubmit}>
-            <div className="formGroup">
+            <div className="LoginformGroup">
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="input"
+                className="Logininput"
                 placeholder="Enter your name"
               />
             </div>
-            {errors.name && <div className="error">{errors.name}</div>}
+            {errors.name && <div className="Loginerror">{errors.name}</div>}
 
-            <div className="formGroup">
+            <div className="LoginformGroup">
               <input
                 type="text"
                 id="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input"
+                className="Logininput"
                 placeholder="Enter your email"
               />
             </div>
-            {errors.email && <div className="error">{errors.email}</div>}
+            {errors.email && <div className="Loginerror">{errors.email}</div>}
 
-            <div className="formGroup">
+            <div className="LoginformGroup">
               <input
                 type="password"
                 id="password"
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input"
+                className="Logininput"
                 placeholder="Enter your password"
               />
             </div>
-            {errors.password && <div className="error">{errors.password}</div>}
+            {errors.password && <div className="Loginerror">{errors.password}</div>}
 
-            <input type="submit" value="Register" className="submitButton" />
+            <input type="submit" value="Register" className="LoginsubmitButton" />
           </form>
         </div>
 
@@ -67,7 +67,7 @@ function RegistrationForm({ onSubmit, errors }) {
         </p>
       </div>
 
-      <div className="right">
+      <div className="Loginright">
         <AnimatedText
           className="rightText"
           text="UUnlock a world of possibilities"

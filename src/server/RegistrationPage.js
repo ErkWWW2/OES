@@ -16,9 +16,9 @@ function RegistrationPage() {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
       const newUser = {
-        username: 'newuser',
-        password: 'newpassword',
-        email: 'newuser@example.com',
+        username: name,
+        password: password,
+        email: email,
       };
       userController.addUser(newUser.username, newUser.email, newUser.password);
       //userModel.addUser(newUser);
