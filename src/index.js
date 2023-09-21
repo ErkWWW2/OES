@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { EventController } from './server/EventController';
 import { UserController } from './server/UserController';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserController>
-      <App />
+      <EventController>
+        <App />
+      </EventController>
     </UserController>
   </React.StrictMode>
 );

@@ -1,50 +1,35 @@
-import React, { useState, useEffect } from "react";
-import EventController from "../../../../server/EventController";
+import React, { useState } from "react";
 import { Grid } from '@mui/material';
 import './EventView.css';
+import { useEventContext } from "../../../../server/EventController";
 
 function EventComponent() {
-    const [eventDetails, setEventsDetails] = useState([]);
-    const [eventDates, setEventDates] = useState([]);
-    
-    useEffect(() => {
-        // Call the fetchEvents function to populate eventModel
-        EventController.fetchEvents();
-
-        // Access eventDetails and eventDates from EventModel and set it in the state
-        setEventsDetails(EventController.getEvents());
-        setEventDates(EventController.getEventDates());
-
-
-        // Checking that arrays are accessed correctly
-        console.log(eventDates);
-        console.log(eventDetails);
-    }, []);
+    const eventController = useEventContext();
+    const [selEventId, setEventId] = useState(Number);
 
     const events = {};
-    eventDates.forEach(eventDate => {
+    eventController.eventDates.forEach(eventDate => {
         if (!events[eventDate.eventId]) {
             events[eventDate.eventId] = [];
         }
 
         events[eventDate.eventId].push(eventDate);
-        console.log(events);
     })
 
     return (
         <div className="grid">
             <Grid container spacing={5} gridTemplateColumns="repear(12, 3fr)">
-                {eventDetails.map(event => (
+                {eventController.eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox">
-                            <div className="eventContent">
+                            <div className="eventContent" >
                                 <h2>{event.name}</h2>
                                 <hr />
                                 <div>
                                     {events[event.eventId]?.map(item => (
                                         <p key={item}>
                                             <span>{'[' + item.votes + '] '}</span>
-                                            <span>{item.date.toDateString()}</span>
+                                            <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
                                         </p>
                                     ))}
                                 </div>
