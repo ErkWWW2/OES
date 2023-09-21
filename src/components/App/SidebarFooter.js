@@ -2,13 +2,20 @@ import { Link } from "react-router-dom";
 import EventLayout from "./EventLayout/EventLayout";
 import './SidebarFooter.css';
 
-function SideFooter({ currentView }) {
-    const link = (currentView === EventLayout)? '/calendar': '/events';
+function SideFooter({ currView }) {
+    const link = (currView === EventLayout)? '/calendar': '/events';
+    const linktext = (currView === EventLayout)? 'the calendar': 'your events';
 
-    <div className="contentBox">
-        {/* Add a button for creating events */}
-        <Link className="viewShiftButton" to={link} />
-    </div>
+    return(
+        <div className="contentBox">
+        <Link className="viewShiftButton" to={link} >
+            <div className="tooltiptext">View {linktext} </div>
+        </Link>
+        <Link className="createEventButton" to={'/newEvent'}>
+            <div className="tooltiptext">Create New Event</div>
+        </Link>
+        </div>
+    );
 }
 
 export default SideFooter;

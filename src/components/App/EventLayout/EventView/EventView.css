@@ -1,20 +1,32 @@
 .grid {
+    margin-left: 25vw;
     width: 75vw;
-    margin-left: 2vw;
-    margin-top: 2vh;
+    padding: 2%;
 }
 
 .MuiGrid-root {
     width: 75vw;
     margin: 0 0 0 20;
-
 }
 
 .eventBox {
     height: 100%;
     width: 100%;
-    background-color: darkcyan;
+    padding: 1%;
+    background-color: #007bff;
     border-radius: 10px;
+    border: solid black;
+    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.3), 0px 3px 4px 0px rgba(0,0,0,0.2), 0px 1px 8px 0px rgba(0,0,0,0.15);
+    transition: background-color 0.3s;
+}
+
+.eventBox:hover {
+    background-color: #005ec2;
+    transition: background-color 0.3s;
+}
+
+.eventBox:active {
+    background-color: #005ec2;
 }
 
 .eventContent {

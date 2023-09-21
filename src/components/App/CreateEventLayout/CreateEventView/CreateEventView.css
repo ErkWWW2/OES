@@ -1,0 +1,99 @@
+.container {
+    display: block;
+    justify-self: center;
+    height: 100vh;
+    align-items: center;
+    width: 75vw;
+    margin-left: 25vw;
+}
+
+.formWrapper {
+    width: 100%;
+    margin-top: 20vh;
+    margin-left: 26.5vw;
+}
+
+.header {
+    color: black;
+}  
+
+.formGroup1 {
+    width: 100%;
+}
+  
+.submitButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    margin-left: 10%;
+    margin-top: 1vh;
+}
+
+input {
+    width: 100%;
+    box-shadow: rgb(233, 233, 233) 0px 2px 2px inset;
+    font-size: 13px;
+    line-height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(174, 174, 174);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 6px 10px 5px;
+    margin-bottom: 1vh;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.inputName {
+    width: 100%;
+    box-shadow: rgb(233, 233, 233) 0px 2px 2px inset;
+    font-size: 13px;
+    line-height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(174, 174, 174);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 6px 10px 5px;
+    margin-bottom: 1vh;
+}
+
+.inputDesc {
+    width: 100%;
+    resize: vertical;
+    box-shadow: rgb(233, 233, 233) 0px 2px 2px inset;
+    font-size: 13px;
+    line-height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(174, 174, 174);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 6px 10px 5px;
+    max-height: 40vh;
+    min-height: 2vh;
+    margin-bottom: 1vh;
+}
+
+.selector {
+    width: 50%;
+    box-shadow: rgb(233, 233, 233) 0px 2px 2px inset;
+    font-size: 13px;
+    line-height: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(174, 174, 174);
+    border-image: initial;
+    border-radius: 4px;
+    padding: 6px 10px 5px;
+    margin-bottom: 1vh;
+}

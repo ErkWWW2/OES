@@ -1,5 +1,6 @@
 .calendarContainer {
-  width: 100vw;
+  margin-left: 25vw;
+  width: 75vw;
 }
 
 .react-calendar {

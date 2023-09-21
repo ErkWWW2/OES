@@ -13,6 +13,11 @@ You can install react-router-dom using npm:
 npm install 
 npm install react-router-dom
 ```
+
+You will also need react-datepicker which can also be instlled using npm:
+```
+npm install react-datepicker
+```
 <br>
 
 ## Start Your Development Server:

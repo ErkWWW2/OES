@@ -16,6 +16,10 @@ const EventController = {
   getDateForEvent: (id) => {
     return (EventModel.eventDates.filter(event => event.eventId === id));
   },
+
+  addVote: (eventId, userId) => {
+    EventModel.addVote(eventId, userId);
+  },
 };
 
 export default EventController;

@@ -33,7 +33,7 @@ function EventComponent() {
 
     return (
         <div className="grid">
-            <Grid container spacing={2} gridTemplateColumns="repear(12, 3fr)">
+            <Grid container spacing={5} gridTemplateColumns="repear(12, 3fr)">
                 {eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox">
