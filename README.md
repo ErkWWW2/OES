@@ -16,7 +16,7 @@ npm install react-router-dom
 
 You will also need material UI's date picker and react-select which can also be installed using npm:
 ```
-npm install @mui/x-date-pickers
+npm install react-datepicker
 npm i --save react-select
 ```
 <br>
