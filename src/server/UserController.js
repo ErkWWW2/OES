@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, createContext, useContext } from 'react';
 import UserModel from '../model/UserModel';
 
-function UserController()  {
+//Create a context
+const UserContext = createContext();
+
+export function UserController({children})  {
     const [users, setUser] = useState(UserModel);
 
     const addUser = (username, email, password) => {
@@ -15,17 +18,16 @@ function UserController()  {
     };
 
     const updateUser = (id, username, email, password) => {
-        setUser((prevUsers) =>
-            prevUsers.map((user) => (user.id === id ? { ...user, username, email, password } : user))
-        );
+        setUser((prevUsers) => prevUsers.map((user) => (user.id === id ? { ...user, username, email, password } : user)));
     };
 
-    return {
-        users,
-        addUser,
-        getUserById,
-        updateUser,
-    };
+    return (
+        <UserContext.Provider value={{ users, setUser, addUser, getUserById, updateUser }}>
+            {children}
+        </UserContext.Provider>
+    );
 }
 
-export default UserController;
+export function useUserContext() {
+    return useContext(UserContext);
+}

@@ -15,7 +15,7 @@ function RegistrationForm({ onSubmit, errors }) {
 
   return (
     <div className="Logincontainer">
-      <div classNmae="Loginleft">
+      <div className="Loginleft">
         <h1 className="LoginHeader">Register</h1>
         <div className="LoginformWrapper">
           <form onSubmit={handleSubmit}>

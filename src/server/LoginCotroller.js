@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/login/LoginView.js';
-import UserController from './UserController';
+import { useUserContext } from './UserController.js';
 
 const LoginController = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const userController = UserController();  //Access to UserController
+  const userController = useUserContext();  //Access to UserController
   console.log(userController.users);
 
   const handleSubmit = (name, password) => {

@@ -13,7 +13,6 @@ function App() {
       <div className="App">
         <div className='content'>
           <Routes>
-            
             <Route exact path='/' element={<LoginController/>}></Route>
             <Route path='/calendar' element={<CalendarLayout />} />
             <Route path='/login' element={<LoginController />} />
