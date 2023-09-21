@@ -8,13 +8,14 @@
 }
 
 .formWrapper {
-    width: 100%;
+    width: 30%;
     margin-top: 20vh;
     margin-left: 26.5vw;
 }
 
 .header {
     color: black;
+    text-align: center;
 }  
 
 .formGroup1 {

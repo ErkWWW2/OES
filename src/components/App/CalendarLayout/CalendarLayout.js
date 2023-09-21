@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../CalendarSidebar'; // Import the Sidebar component
 import Calendar from './Calendar/Calendar'; // Import the Calendar component
 import './CalendarLayout.css'; // Import the CSS for your layout

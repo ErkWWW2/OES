@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
 import Calendar from 'react-calendar';
-import EventController from '../../../../server/EventController';
+import { useEventContext } from '../../../../server/EventController';
 import './Calendar.css';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {
-
-  useEffect(() => {
-    EventController.fetchEvents();
-    // Update the selected date in the parent component
-    setSelectedDate(selectedDate);
-  }, [selectedDate, setSelectedDate]);
+  const eventController = useEventContext();
 
   return (
     <div className='calendarContainer'>

@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import ptBR from 'date-fns/locale/pt-BR'; // Supposed to import the locale
 import "./CreateEventView.css";
 
-function CreateEventForm({ onSubmit, errors }) {
+function CreateEventForm({ onSubmit, errors, users }) {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [part, setPart] = useState([]);
@@ -18,8 +18,6 @@ function CreateEventForm({ onSubmit, errors }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Fix so that when submit button is pressed, the 
-        // states are updated and event is created
         onSubmit(name, desc, part, org, date, start, end);
     };
 
@@ -27,7 +25,7 @@ function CreateEventForm({ onSubmit, errors }) {
         <div className="container">
             <h1 className="header">Create New Event</h1>
             <div className="formWrapper">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="formGroup1">
                         <input 
                          name="name"
@@ -39,21 +37,29 @@ function CreateEventForm({ onSubmit, errors }) {
                         />
 
                         <textarea 
-                         name="desc"
-                         type="text "
-                         value={desc}
-                         onChange={(e) => setDesc(e.target.value)} 
-                         className="inputDesc"
-                         placeholder="Enter the description and details of your event"
+                            name="desc"
+                            type="text "
+                            value={desc}
+                            onChange={(e) => setDesc(e.target.value)} 
+                            className="inputDesc"
+                            placeholder="Enter the description and details of your event"
                         />
 
-                        <select className="selector" placeholder="Select participants">
-                            <option selected value={"none"}></option>
-                        </select>
+                        <select 
+                            data={users}
+                            className="selector" 
+                            placeholder="Select participants"
+                            selectMultiple={true}
+                            touchUi={false}
+                        />
 
-                        <select className="selector" placeholder="Select organizers">
-                            <option selected value={"none"}></option>
-                        </select>
+                        <select 
+                            data={users}
+                            className="selector" 
+                            placeholder="Select organizers"
+                            selectMultiple={true}
+                            touchUi={false}
+                        />
 
                         <ReactDatePicker
                             selectsStart

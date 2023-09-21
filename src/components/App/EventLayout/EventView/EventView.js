@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from "react";
-import EventController from "../../../../server/EventController";
+import React from "react";
 import { Grid } from '@mui/material';
 import './EventView.css';
+import { useEventContext } from "../../../../server/EventController";
 
 function EventComponent() {
-    const [eventDetails, setEventsDetails] = useState([]);
-    const [eventDates, setEventDates] = useState([]);
-    
-    useEffect(() => {
-        // Call the fetchEvents function to populate eventModel
-        EventController.fetchEvents();
-
-        // Access eventDetails and eventDates from EventModel and set it in the state
-        setEventsDetails(EventController.getEvents());
-        setEventDates(EventController.getEventDates());
-
-
-        // Checking that arrays are accessed correctly
-        console.log(eventDates);
-        console.log(eventDetails);
-    }, []);
+    const eventController = useEventContext();
 
     const events = {};
-    eventDates.forEach(eventDate => {
+    eventController.eventDates.forEach(eventDate => {
         if (!events[eventDate.eventId]) {
             events[eventDate.eventId] = [];
         }
@@ -34,7 +19,7 @@ function EventComponent() {
     return (
         <div className="grid">
             <Grid container spacing={5} gridTemplateColumns="repear(12, 3fr)">
-                {eventDetails.map(event => (
+                {eventController.eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox">
                             <div className="eventContent">
