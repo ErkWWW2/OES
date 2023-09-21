@@ -12,32 +12,39 @@ export function EventController({children}) {
   const votes = 0;
   const voters = [];
 
-  const createEvent = (name, desc, part, org, date, start, end) => {
-    let id = eventDetails.length + 1;
-    const newEventDetails = { id, name, desc, part, org };
+  const createEvent = (name, desc, part, org, start, end) => {
+    let eventId = eventDetails.length + 1;
+    const newEventDetails = { eventId, name, desc, part, org };
+    console.log(newEventDetails);
     setEventDetails((prevEventDetails) => [...prevEventDetails, newEventDetails]);
+    console.log(eventDetails);
 
-
+    /*
     var dateArray = [];  
-    var currentDate = start;
-    while (currentDate <= end) {
-      dateArray.push(new Date(currentDate));
-      currentDate = currentDate.addDays(1);
+
+    // Functionality for selecting multiple options for dates
+    let index = 0
+    var currDate = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+
+    while (currDate <= end) {
+      console.log(currDate);
+      dateArray[index] = currDate;
+      index++;
+      currDate.setDate(currDate.getDate() + 1);
     }
+    
 
     for (let i = 0; i < dateArray.length; i++) {
-      date = dateArray[i];
-      const newEventDate = {date, start, end, id, votes, voters};
-      setEventDates((prevEventDates) => [...prevEventDates, newEventDate]);
+      let newEventDate = { start, end, eventId, votes, voters };
+      setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
     }
-  };
+    */
 
-  // Helper function for adding multiple dates using dateArray
-  Date.Prototype.addDays = function(days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-  }
+    let newEventDate = { start, end, eventId, votes, voters };
+    setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
+    
+    console.log(eventDates);
+  };
 
   const getEventsById = (id) => {
     return eventDetails.find((event) => event.eventId === id);
@@ -48,7 +55,7 @@ export function EventController({children}) {
   }
 
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent }}>
             {children}
       </EventContext.Provider>
   );

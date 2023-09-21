@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginController from './server/LoginCotroller.js';
 import CalendarLayout from './components/App/CalendarLayout/CalendarLayout';
 import EventLayout from './components/App/EventLayout/EventLayout';
-import CreateEventLayout from './components/App/CreateEventLayout/CreateEventLayout';
 import RegistrationPage from './server/RegistrationPage'
 import CreateEventController from './server/CreateEventController';
 

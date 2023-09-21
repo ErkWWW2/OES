@@ -2,16 +2,16 @@ const EventDetailsModel = [
     { 
         eventId: 1, 
         name: 'Event 1', 
-        description: 'This event is for testing events the same event on multiple dates', 
-        participants: [], 
-        organizers: [] 
+        desc: 'This event is for testing events the same event on multiple dates', 
+        part: [], 
+        org: [] 
     },
     { 
         eventId: 2, 
         name: 'Event 2', 
-        description: 'This event is for testing events', 
-        participants: [], 
-        organizers: [] 
+        desc: 'This event is for testing events', 
+        part: [], 
+        org: [] 
     },
 ];
 

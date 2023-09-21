@@ -10,7 +10,6 @@ function CreateEventForm({ onSubmit, errors, users }) {
     const [part, setPart] = useState([]);
     const [org, setOrg] = useState([]);
 
-    const [date, setDate] = useState(new Date());
     const [start, setStart] = useState();
     const [end, setEnd] = useState();
 
@@ -18,7 +17,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(name, desc, part, org, date, start, end);
+        onSubmit(name, desc, part, org, start, end);
     };
 
     return (
@@ -35,8 +34,10 @@ function CreateEventForm({ onSubmit, errors, users }) {
                          className="inputName"
                          placeholder="Enter name of event"
                         />
+                        {errors.name && <div className="Loginerror">{errors.name}</div>}
 
                         <textarea 
+
                             name="desc"
                             type="text "
                             value={desc}
@@ -49,16 +50,16 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             data={users}
                             className="selector" 
                             placeholder="Select participants"
-                            selectMultiple={true}
-                            touchUi={false}
+                            multiple={true}
+                            onChange={(e) => setPart(e.target.value)}
                         />
 
                         <select 
                             data={users}
                             className="selector" 
                             placeholder="Select organizers"
-                            selectMultiple={true}
-                            touchUi={false}
+                            multiple={true}
+                            onChange={(e) => setOrg(e.target.value)}
                         />
 
                         <ReactDatePicker
@@ -68,8 +69,10 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             selected={start}
                             onChange={date => setStart(date)    }
                             startDate={start}
+                            maxDate={end}
                             dateFormat="MMMM d, yyyy hh:mm"
                         />
+                        {errors.start && <div className="Loginerror">{errors.start}</div>}
 
                         <ReactDatePicker
                             selectsEnd
@@ -82,6 +85,8 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             minDate={start}
                             dateFormat="MMMM d, yyyy hh:mm"
                         />
+                        {errors.end && <div className="Loginerror">{errors.end}</div>}
+                        
                     </div>
 
                     <input type="submit" value="Submit" className="submitButton" />

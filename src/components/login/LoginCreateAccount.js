@@ -70,7 +70,7 @@ function RegistrationForm({ onSubmit, errors }) {
       <div className="Loginright">
         <AnimatedText
           className="rightText"
-          text="UUnlock a world of possibilities."
+          text="Uunlock a world of possibilities."
         />
       </div>
     </div>

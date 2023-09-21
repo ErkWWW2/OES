@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from '@mui/material';
 import './EventView.css';
 import { useEventContext } from "../../../../server/EventController";
 
 function EventComponent() {
     const eventController = useEventContext();
+    const [selEventId, setEventId] = useState(Number);
 
     const events = {};
     eventController.eventDates.forEach(eventDate => {
@@ -13,7 +14,6 @@ function EventComponent() {
         }
 
         events[eventDate.eventId].push(eventDate);
-        console.log(events);
     })
 
     return (
@@ -22,14 +22,14 @@ function EventComponent() {
                 {eventController.eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox">
-                            <div className="eventContent">
+                            <div className="eventContent" >
                                 <h2>{event.name}</h2>
                                 <hr />
                                 <div>
                                     {events[event.eventId]?.map(item => (
                                         <p key={item}>
                                             <span>{'[' + item.votes + '] '}</span>
-                                            <span>{item.date.toDateString()}</span>
+                                            <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
                                         </p>
                                     ))}
                                 </div>
