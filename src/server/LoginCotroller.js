@@ -20,6 +20,8 @@ const LoginController = () => {
 
     if (user) {
       // User exists, navigate to the appropriate page (e.g., '/calendar')
+      console.log(user.id);
+      userController.confLogUser(user.id);
       navigate('/calendar');
     } else {
       // User not found, display an error message

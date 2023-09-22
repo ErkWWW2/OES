@@ -6,6 +6,7 @@ const UserContext = createContext();
 
 export function UserController({children})  {
     const [users, setUser] = useState(UserModel);
+    const [logUser, setLogUser] = useState(-1);  //Test
 
     const addUser = (username, email, password) => {
         let id = users.length + 1;
@@ -23,8 +24,12 @@ export function UserController({children})  {
         setUser((prevUsers) => prevUsers.map((user) => (user.id === id ? { ...user, username, email, password } : user)));
     };
 
+    const confLogUser = (id) => {
+        setLogUser(id); 
+    };
+
     return (
-        <UserContext.Provider value={{ users, setUser, addUser, getUserById, updateUser }}>
+        <UserContext.Provider value={{ users, setUser, addUser, getUserById, updateUser, logUser, confLogUser }}>
             {children}
         </UserContext.Provider>
     );
