@@ -9,17 +9,27 @@ function CreateEventController () {
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
+    // Get User and Event Contexts
     const userController = useUserContext();
-    console.log(userController.users);
-
     const eventController = useEventContext();
-    console.log(eventController.eventDetails);
-    console.log(eventController.eventDates);
 
     const handleSubmit = (name, desc, part, org, start, end) => {
         const validationErrors = validateForm(name, start, end);
         setErrors(validationErrors);
+        
+        // Convert part and org into single-variable arrays holding only the id
+        const partArray = part;
+        const orgArray = org;
+        for (let i = 0; i < partArray.length; i++) {
+            part[i] = partArray[i].id;
+        }
 
+        for (let i = 0; i < orgArray.length; i++) {
+            org[i] = orgArray[i].id;
+        }
+
+        // Make sure there anre no errors and then create 
+        // the event before navigating to /events
         if (Object.keys(validationErrors).length === 0) {
             const newEvent = {
                 name: name,

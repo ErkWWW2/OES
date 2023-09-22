@@ -15,14 +15,11 @@ export function EventController({children}) {
   const createEvent = (name, desc, part, org, start, end) => {
     let eventId = eventDetails.length + 1;
     const newEventDetails = { eventId, name, desc, part, org };
-    console.log(newEventDetails);
     setEventDetails((prevEventDetails) => [...prevEventDetails, newEventDetails]);
-    console.log(eventDetails);
 
     /*
-    var dateArray = [];  
-
     // Functionality for selecting multiple options for dates
+    var dateArray = [];  
     let index = 0
     var currDate = new Date(start.getFullYear(), start.getMonth(), start.getDate());
 
@@ -32,7 +29,6 @@ export function EventController({children}) {
       index++;
       currDate.setDate(currDate.getDate() + 1);
     }
-    
 
     for (let i = 0; i < dateArray.length; i++) {
       let newEventDate = { start, end, eventId, votes, voters };
@@ -42,8 +38,6 @@ export function EventController({children}) {
 
     let newEventDate = { start, end, eventId, votes, voters };
     setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
-    
-    console.log(eventDates);
   };
 
   const getEventsById = (id) => {

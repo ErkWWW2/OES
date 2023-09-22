@@ -86,7 +86,8 @@ input {
 }
 
 .selector {
-    width: 50%;
+    color: black;
+    width: 105%;
     box-shadow: rgb(233, 233, 233) 0px 2px 2px inset;
     font-size: 13px;
     line-height: 16px;

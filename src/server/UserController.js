@@ -9,7 +9,9 @@ export function UserController({children})  {
 
     const addUser = (username, email, password) => {
         let id = users.length + 1;
-        const newUser = { id, username, email, password };
+        let value = id;
+        let label = username;
+        const newUser = { id, value, username, label, email, password };
         setUser((prevUsers) => [...prevUsers, newUser]);
     };
 

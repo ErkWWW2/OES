@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
+import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
+import makeAnimated from 'react-select/animated';
 import ptBR from 'date-fns/locale/pt-BR'; // Supposed to import the locale
 import "./CreateEventView.css";
 
 function CreateEventForm({ onSubmit, errors, users }) {
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [part, setPart] = useState([]);
-    const [org, setOrg] = useState([]);
+    const [part, setPart] = useState();
+    const [org, setOrg] = useState();
 
     const [start, setStart] = useState();
     const [end, setEnd] = useState();
+
+    // React-select animation component
+    const animatedComponents = makeAnimated();
 
     registerLocale('ptBR', ptBR);
 
@@ -46,20 +52,24 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             placeholder="Enter the description and details of your event"
                         />
 
-                        <select 
-                            data={users}
+                        <Select
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            onChange={part => setPart(part)}
+                            isMulti
                             className="selector" 
                             placeholder="Select participants"
-                            multiple={true}
-                            onChange={(e) => setPart(e.target.value)}
+                            options={users}
                         />
 
-                        <select 
-                            data={users}
+                        <Select
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            onChange={org => setOrg(org)}
+                            isMulti
                             className="selector" 
                             placeholder="Select organizers"
-                            multiple={true}
-                            onChange={(e) => setOrg(e.target.value)}
+                            options={users}
                         />
 
                         <ReactDatePicker
@@ -70,7 +80,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             onChange={date => setStart(date)    }
                             startDate={start}
                             maxDate={end}
-                            dateFormat="MMMM d, yyyy hh:mm"
+                            dateFormat="MMMM d, yyyy h:mma"
                         />
                         {errors.start && <div className="Loginerror">{errors.start}</div>}
 
@@ -83,10 +93,10 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             endDate={end}
                             startDate={start}
                             minDate={start}
-                            dateFormat="MMMM d, yyyy hh:mm"
+                            dateFormat="MMMM d, yyyy h:mma"
                         />
                         {errors.end && <div className="Loginerror">{errors.end}</div>}
-                        
+
                     </div>
 
                     <input type="submit" value="Submit" className="submitButton" />
