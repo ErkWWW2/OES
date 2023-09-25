@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import EventLayout from "../../EventLayout/EventLayout";
 import "./SidebarFooter.css";
 import logo from "./calendar.png";
+import user from "./user.png";
+import plus from "./plus.png";
 
 function SideFooter({ currView }) {
   const link = currView === EventLayout ? "/calendar" : "/events";
@@ -14,12 +16,12 @@ function SideFooter({ currView }) {
         <div className="tooltiptext">View {linktext}</div>
       </Link>
       <Link className="createEventButton" to={"/newEvent"}>
-        <h1>new event</h1>
+        <img src={plus} alt="New event icon" />
         <div className="tooltiptext">Create New Event</div>
       </Link>
-      <Link className="createEventButton" to={'/ConfigureProfile'}>
-        <h1>Edit Profile</h1>
-        <div className="tooltiptext">Create New Event</div>
+      <Link className="confUserButton" to={'/ConfigureProfile'}>
+        <img src={user} alt="User Icon" />
+        <div className="tooltiptext">Configure User</div>
       </Link>
 
     </div>
