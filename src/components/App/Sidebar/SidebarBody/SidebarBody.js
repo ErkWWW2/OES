@@ -3,6 +3,8 @@ import EventLayout from '../../EventLayout/EventLayout';
 import CalendarLayout from '../../CalendarLayout/CalendarLayout';
 import { useEventContext } from "../../../../server/EventController";
 import './SidebarBody.css';
+import Button from '@mui/material/Button';
+import { useUserContext } from "../../../../server/UserController";
 
 function getDayWithSuffix(day) {
     if (day >= 11 && day <= 13) {
@@ -42,6 +44,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
   const eventController = useEventContext();
+  const userController = useUserContext();
 
   const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
   
@@ -84,6 +87,8 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                         <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
                     </p>
                 ))}
+                {event.org.includes(userController.logUser) ? <Button variant="contained" color="primary" onClick={() => eventController.clickSelEvent(event.eventId)}> Edit </Button>
+                                                            : <Button variant="contained" color="primary" onClick={() => eventController.clickSelEvent(event.eventId)}> Vote! </Button>}
             </div>
         );
     }

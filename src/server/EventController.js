@@ -80,8 +80,13 @@ export function EventController({children}) {
     return(eventDates.find((event) => event.eventId === id).votes);
   }
 
+  const clickSelEvent = (eventId) => {
+    //Incomplete, needs to be implemented
+    console.log("Tjenare! Du gluttar på event: "+eventId);
+  }
+
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdsForDate, getNameById, getDescById, getVotesById }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdsForDate, getNameById, getDescById, getVotesById, clickSelEvent }}>
             {children}
       </EventContext.Provider>
   );
