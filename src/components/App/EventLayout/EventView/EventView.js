@@ -8,9 +8,6 @@ function EventComponent({ selectedEvent, setSelectedEvent }) {
     const eventController = useEventContext();
     const userController = useUserContext();
 
-    console.log(userController.logUser);
-    console.log(eventController.eventDetails[1].part);
-
     const events = {};
     eventController.eventDates.forEach(eventDate => {
         if (!events[eventDate.eventId]) {
@@ -22,7 +19,7 @@ function EventComponent({ selectedEvent, setSelectedEvent }) {
 
     return (
         <div className="grid">
-            <Grid container spacing={5} gridTemplateColumns="repear(12, 3fr)">
+            <Grid container spacing={5} gridTemplateColumns="repeat(12, 3fr)">
                 {eventController.eventDetails.filter(event => event.part.includes(userController.logUser)).map(event => ( 
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
                         <div className="eventBox" onClick={() => setSelectedEvent(event.eventId)}>
