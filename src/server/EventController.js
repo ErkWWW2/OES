@@ -80,8 +80,13 @@ export function EventController({children}) {
     return(eventDates.find((event) => event.eventId === id).votes);
   }
 
+  const voteByClick = (i) => {
+    //Incomplete, needs to be implemented
+    return i;
+  }
+
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdsForDate, getNameById, getDescById, getVotesById }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdsForDate, getNameById, getDescById, getVotesById, voteByClick }}>
             {children}
       </EventContext.Provider>
   );
