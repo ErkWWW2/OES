@@ -26,6 +26,7 @@ function ProfilePage() {
     e.preventDefault();
     // Update the user's profile with formData
     updateUser(logUser, formData.username, formData.email, formData.password);
+    navigate('/calendar');
   };
 
   return (
@@ -73,7 +74,7 @@ function ProfilePage() {
         className="profile-input"
       />
     </div>
-    <button onClick={navigate('/calendar')} type="submit" className="profile-button">
+    <button type="submit" className="profile-button">
       Save Changes
     </button>
   </form>
