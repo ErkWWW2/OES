@@ -43,9 +43,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
 
   const eventController = useEventContext();
 
-  const id = selectedDate ? eventController.getEventIdForDate(selectedDate): '';
-  const name = id ? eventController.getNameById(id): '';
-  const desc = id ? eventController.getDescById(id): '';
+  const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
   
   const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
   const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
@@ -63,8 +61,12 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                 {<span className='weekday'> {weekday} </span>}
             </p>}
             {<div>
-              {<h1 className="eventName"> {name} </h1>}
-              {<span className="eventDesc"> {desc} </span>}
+              {idArray.map(id => (
+                <div className='calEvent'>
+                  <h1>{eventController.getNameById(id)}</h1>
+                  <p>{eventController.getDescById(id)}</p>
+                </div>
+              ))}
             </div>}
         </div>
     );
@@ -73,7 +75,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
     if (selectedEvent)
     {
         return(
-            <div className="eventBody">
+            <div className="calEvent">
                 {<h1 className="name">{event.name}</h1>}
                 {<p className="desc">{event.desc}</p>}
                 {eventDates?.map(item => (

@@ -36,6 +36,7 @@
 .calEvent {
     background-color: #007bff;
     padding: 5%;
+    margin-bottom: 1vh;
     border: 2px solid black;
     border-radius: .5em;
     box-shadow: 
@@ -47,8 +48,12 @@
       box-shadow 0.2s;
   }
 
+.calEvent h1 {
+    margin-top: 0;
+}
+
 .calEvent:hover {
-    background-color: #005ec2;
+    background-color: #0068d8;
     box-shadow: 
         0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
         0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
