@@ -1,6 +1,6 @@
 .grid {
     margin-left: 25vw;
-    width: 75vw;
+    width: 70vw;
     padding: 2%;
 }
 
@@ -16,17 +16,32 @@
     background-color: #007bff;
     border-radius: 10px;
     border: solid black;
-    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.3), 0px 3px 4px 0px rgba(0,0,0,0.2), 0px 1px 8px 0px rgba(0,0,0,0.15);
-    transition: background-color 0.3s;
+    box-shadow: 
+        0px 3px 3px -2px rgba(0, 0, 0, 0.5), 
+        0px 3px 4px 0px rgba(0, 0, 0, 0.4), 
+        0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
 }
 
 .eventBox:hover {
-    background-color: #005ec2;
-    transition: background-color 0.3s;
+    background-color: #086edb;
+    box-shadow: 
+        0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
+        0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
+        0px 0.5px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
 }
 
 .eventBox:active {
-    background-color: #005ec2;
+    background-color: #086edb;
+    box-shadow: 
+    0px 3px 3px -2px #0000004d inset, 
+    0px 3px 4px 0px #00000033 inset, 
+    0px 1px 8px 0px #00000026 inset;
 }
 
 .eventContent {

@@ -3,9 +3,8 @@ import { Grid } from '@mui/material';
 import './EventView.css';
 import { useEventContext } from "../../../../server/EventController";
 
-function EventComponent() {
+function EventComponent({ selectedEvent, setSelectedEvent }) {
     const eventController = useEventContext();
-    const [selEventId, setEventId] = useState(Number);
 
     const events = {};
     eventController.eventDates.forEach(eventDate => {
@@ -21,7 +20,7 @@ function EventComponent() {
             <Grid container spacing={5} gridTemplateColumns="repear(12, 3fr)">
                 {eventController.eventDetails.map(event => (
                     <Grid item key={event.eventId} xs={12} sm={6} md={4}>
-                        <div className="eventBox">
+                        <div className="eventBox" onClick={() => setSelectedEvent(event.eventId)}>
                             <div className="eventContent" >
                                 <h2>{event.name}</h2>
                                 <hr />

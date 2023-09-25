@@ -1,7 +1,7 @@
 .contentBox {
-    position: fixed;
-    margin-top: 85vh;
-    width: 20vw;
+    position: absolute;
+    bottom: -5vh;
+    width: 23vw;
     height: 20%;
 }
 
@@ -11,13 +11,30 @@
     height: 40%;
     background-color: #007bff;
     border-radius: 15px;
-    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.3), 0px 3px 4px 0px rgba(0,0,0,0.2), 0px 1px 8px 0px rgba(0,0,0,0.15);
-    transition: background-color 0.3s;
+    box-shadow: 
+        0px 3px 3px -2px rgba(0, 0, 0, 0.5), 
+        0px 3px 4px 0px rgba(0, 0, 0, 0.4), 
+        0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
+}
+
+.viewShiftButton img {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 17%;
 }
 
 .viewShiftButton:hover {
     background-color: #005ec2;
-    transition: background-color 0.3s;
+    box-shadow: 
+        0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
+        0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
+        0px 0.5px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
 }
 
 .viewShiftButton:hover .tooltiptext {
@@ -38,7 +55,7 @@
     width: 75px;
     bottom: 105%;
     left: 16%;
-    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    margin-left: -60px;
 }
 
 .viewShiftButton .tooltiptext::after {
@@ -58,14 +75,34 @@
     height: 40%;
     background-color: #4fb94f;
     border-radius: 15px;
-    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.3), 0px 3px 4px 0px rgba(0,0,0,0.2), 0px 1px 8px 0px rgba(0,0,0,0.15);
-    transition: background-color 0.3s;
+    text-decoration: none;
+    box-shadow: 
+        0px 3px 3px -2px rgba(0, 0, 0, 0.5), 
+        0px 3px 4px 0px rgba(0, 0, 0, 0.4), 
+        0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
     margin-left: 1vw;
+  }
+
+.createEventButton h1 {
+    display: block;
+    font-size: 1.5em;
+    color: black;
+    margin-top: 16%;
+    text-align: center;
   }
 
 .createEventButton:hover {
     background-color: #4a8a4a;
-    transition: background-color 0.3s;
+    box-shadow: 
+        0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
+        0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
+        0px 0.5px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
 }
 
 .createEventButton:hover .tooltiptext {
@@ -86,7 +123,7 @@
     width: 150px;
     bottom: 105%;
     left: 57%;
-    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    margin-left: -60px;
 }
 
 .createEventButton .tooltiptext::after {

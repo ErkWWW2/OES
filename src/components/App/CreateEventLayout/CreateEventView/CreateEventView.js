@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import ReactDatePicker, { registerLocale } from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css'
-import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
-import makeAnimated from 'react-select/animated';
-import ptBR from 'date-fns/locale/pt-BR'; // Supposed to import the locale
+import Select from 'react-select';                                  // React-select
+import makeAnimated from 'react-select/animated';                   // React-select animations
+import { DateTimePicker } from '@mui/x-date-pickers';               // Material UI DateTimePicker
+import { LocalizationProvider } from '@mui/x-date-pickers';         // Date Localization
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns' // Date Localization Adapter
+import {enGB } from '@mui/x-date-pickers/locales'
 import "./CreateEventView.css";
+
 
 function CreateEventForm({ onSubmit, errors, users }) {
     const [name, setName] = useState('');
@@ -19,15 +20,14 @@ function CreateEventForm({ onSubmit, errors, users }) {
     // React-select animation component
     const animatedComponents = makeAnimated();
 
-    registerLocale('ptBR', ptBR);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(name, desc, part, org, start, end);
     };
 
     return (
-        <div className="container">
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div className="container">
             <h1 className="header">Create New Event</h1>
             <div className="formWrapper">
                 <form onSubmit={handleSubmit}>
@@ -43,7 +43,6 @@ function CreateEventForm({ onSubmit, errors, users }) {
                         {errors.name && <div className="Loginerror">{errors.name}</div>}
 
                         <textarea 
-
                             name="desc"
                             type="text "
                             value={desc}
@@ -69,31 +68,28 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             isMulti
                             className="selector" 
                             placeholder="Select organizers"
-                            options={users}
+                            options={part}
                         />
 
-                        <ReactDatePicker
-                            selectsStart
-                            showTimeSelect
-                            isClearable
-                            selected={start}
-                            onChange={date => setStart(date)    }
-                            startDate={start}
-                            maxDate={end}
-                            dateFormat="MMMM d, yyyy h:mma"
+                        <DateTimePicker 
+                            ampm={false}
+                            showDaysOutsideCurrentMonth= {true}
+                            maxDateTime={end}
+                            value={start}
+                            onChange={(newValue) => setStart(newValue)}
+                            format="LLLL dd yyyy HH:mm"
+                            className="datePicker"
                         />
                         {errors.start && <div className="Loginerror">{errors.start}</div>}
 
-                        <ReactDatePicker
-                            selectsEnd
-                            showTimeSelect
-                            isClearable
-                            selected={end}
-                            onChange={date => setEnd(date)    }
-                            endDate={end}
-                            startDate={start}
-                            minDate={start}
-                            dateFormat="MMMM d, yyyy h:mma"
+                        <DateTimePicker 
+                            ampm={false}
+                            showDaysOutsideCurrentMonth= {true}
+                            minDateTime={start}
+                            value={end}
+                            onChange={(newValue) => setEnd(newValue)}
+                            format="LLLL dd yyyy HH:mm"
+                            className="datePicker"
                         />
                         {errors.end && <div className="Loginerror">{errors.end}</div>}
 
@@ -103,6 +99,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
                 </form>
             </div>
         </div>
+        </LocalizationProvider>
     );
 }
 

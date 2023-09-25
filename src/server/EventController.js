@@ -40,7 +40,7 @@ export function EventController({children}) {
     setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
   };
 
-  const getEventsById = (id) => {
+  const getEventById = (id) => {
     return eventDetails.find((event) => event.eventId === id);
   };
 
@@ -48,8 +48,36 @@ export function EventController({children}) {
     return (eventDates.filter((event) => event.eventId === id));
   }
 
+  const getEventIdForDate = (date) => {
+    for (let i = 0; i < eventDates.length; i++)
+    {
+      const start = new Date(eventDates[i].start);
+      const end = new Date(eventDates[i].end);
+      
+      const dateEnd = new Date(date);
+      dateEnd.setTime(date.getTime() + 86399999) // +24 hours
+
+      if (dateEnd >= start && date <= end )
+      {
+        return(eventDates[i].eventId);
+      } 
+    }
+  }
+
+  const getNameById = (id) => {
+    return(eventDetails.find((event) => event.eventId === id).name);
+  }
+
+  const getDescById = (id) => {
+    return(eventDetails.find((event) => event.eventId === id).desc);
+  }
+
+  const getVotesById = (id) => {
+    return(eventDates.find((event) => event.eventId === id).votes);
+  }
+
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates, createEvent }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdForDate, getNameById, getDescById, getVotesById }}>
             {children}
       </EventContext.Provider>
   );

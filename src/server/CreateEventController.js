@@ -20,12 +20,22 @@ function CreateEventController () {
         // Convert part and org into single-variable arrays holding only the id
         const partArray = part;
         const orgArray = org;
-        for (let i = 0; i < partArray.length; i++) {
-            part[i] = partArray[i].id;
+        if (partArray !== undefined) {
+            for (let i = 0; i < partArray.length; i++) {
+                part[i] = partArray[i].id;
+            }
+        }
+        else {
+            part = [];
         }
 
-        for (let i = 0; i < orgArray.length; i++) {
-            org[i] = orgArray[i].id;
+        if (orgArray !== undefined) {
+            for (let i = 0; i < orgArray.length; i++) {
+                org[i] = orgArray[i].id;
+            }
+        }
+        else {
+            org = [];
         }
 
         // Make sure there anre no errors and then create 
