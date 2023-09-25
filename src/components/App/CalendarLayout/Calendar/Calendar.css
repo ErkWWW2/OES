@@ -59,6 +59,11 @@
   transition: background-color 0.3s;
 }
 
+.react-calendar__tile div {
+  display: inline-block;
+  margin-bottom: .3vh;
+}
+
 .react-calendar__tile .calEvent {
   background-color: #007bff;
   padding: 5%;
@@ -74,7 +79,7 @@
 }
 
 .react-calendar__tile .calEvent:hover {
-  background-color: #005ec2;
+  background-color: #0068d8;
   box-shadow: 
       0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
       0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 

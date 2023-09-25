@@ -48,7 +48,9 @@ export function EventController({children}) {
     return (eventDates.filter((event) => event.eventId === id));
   }
 
-  const getEventIdForDate = (date) => {
+  const getEventIdsForDate = (date) => {
+    const array = [];
+
     for (let i = 0; i < eventDates.length; i++)
     {
       const start = new Date(eventDates[i].start);
@@ -59,9 +61,11 @@ export function EventController({children}) {
 
       if (dateEnd >= start && date <= end )
       {
-        return(eventDates[i].eventId);
+        array.push(eventDates[i].eventId);
       } 
     }
+
+    return array;
   }
 
   const getNameById = (id) => {
@@ -77,7 +81,7 @@ export function EventController({children}) {
   }
 
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdForDate, getNameById, getDescById, getVotesById }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent, getEventIdsForDate, getNameById, getDescById, getVotesById }}>
             {children}
       </EventContext.Provider>
   );
