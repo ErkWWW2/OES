@@ -6,6 +6,7 @@ import CalendarLayout from './components/App/CalendarLayout/CalendarLayout';
 import EventLayout from './components/App/EventLayout/EventLayout';
 import RegistrationPage from './server/RegistrationPage'
 import CreateEventController from './server/CreateEventController';
+import EmptyPage from './components/EmptyPage';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <div className="App">
         <div className='content'>
           <Routes>
-            <Route exact path='/' element={<LoginController/>}></Route>
+            <Route path='*' element={<EmptyPage />} />
+            <Route exact path='/' element={<LoginController/>} />
             <Route path='/calendar' element={<CalendarLayout />} />
             <Route path='/login' element={<LoginController />} />
             <Route path='/events' element={<EventLayout />} />
