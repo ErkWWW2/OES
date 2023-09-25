@@ -1,0 +1,59 @@
+.selDate {
+    margin-left: 3%;
+    text-align: center;
+
+    --date-font: 30px;
+    --date-font-l: 60px;
+    --date-font-s: 20px;
+}
+
+.month {
+    font-size: var(--date-font-l);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    color:#818181;
+}
+
+.year {
+    font-size: var(--date-font);
+}
+
+.day {
+    font-size: var(--date-font);
+}
+
+.weekday {
+    font-size: var(--date-font-s);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    color:#818181;
+}  
+
+.footer {
+    background-color: aquamarine;
+}
+
+.calEvent {
+    background-color: #007bff;
+    padding: 5%;
+    border: 2px solid black;
+    border-radius: .5em;
+    box-shadow: 
+      0px 3px 3px -2px rgba(0, 0, 0, 0.5), 
+      0px 3px 4px 0px rgba(0, 0, 0, 0.4), 
+      0px 1px 8px 0px rgba(0, 0, 0, 0.3);
+    transition: 
+      background-color 0.3s, 
+      box-shadow 0.2s;
+  }
+
+.calEvent:hover {
+    background-color: #005ec2;
+    box-shadow: 
+        0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
+        0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
+        0px 0.5px 4px 0px rgba(0, 0, 0, 0.15);
+    transition: 
+        background-color 0.3s, 
+        box-shadow 0.2s;
+  }

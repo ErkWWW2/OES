@@ -1,7 +1,7 @@
 import React from "react";
-import EventLayout from '../EventLayout/EventLayout';
-import CalendarLayout from '../CalendarLayout/CalendarLayout';
-import { useEventContext } from "../../../server/EventController";
+import EventLayout from '../../EventLayout/EventLayout';
+import CalendarLayout from '../../CalendarLayout/CalendarLayout';
+import { useEventContext } from "../../../../server/EventController";
 import './SidebarBody.css';
 
 function getDayWithSuffix(day) {
@@ -42,9 +42,13 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
   const eventController = useEventContext();
+
+  const id = selectedDate ? eventController.getEventIdForDate(selectedDate): '';
+  const name = id ? eventController.getNameById(id): '';
+  const desc = id ? eventController.getDescById(id): '';
   
-  const event = eventController.getEventById(selectedEvent);
-  const eventDates = eventController.getDatesForEvent(selectedEvent);
+  const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
+  const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
 
   if (currentView === CalendarLayout)
   {
@@ -55,9 +59,13 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                 {<br/>}
                 {<span className='day'> {day} </span>}
                 {<span className='year'> {year} </span>}
-                {<br></br>}
+                {<br />}
                 {<span className='weekday'> {weekday} </span>}
             </p>}
+            {<div>
+              {<h1 className="eventName"> {name} </h1>}
+              {<span className="eventDesc"> {desc} </span>}
+            </div>}
         </div>
     );
   }
