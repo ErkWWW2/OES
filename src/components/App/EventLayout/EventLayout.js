@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '../CalendarSidebar'; // Import the Sidebar component
+import Sidebar from '../Sidebar/CalendarSidebar'; // Import the Sidebar component
 import EventComponent from './EventView/EventView'; // Import the Calendar component
 import './EventLayout.css'
 

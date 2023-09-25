@@ -68,7 +68,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
                             isMulti
                             className="selector" 
                             placeholder="Select organizers"
-                            options={users}
+                            options={part}
                         />
 
                         <DateTimePicker 

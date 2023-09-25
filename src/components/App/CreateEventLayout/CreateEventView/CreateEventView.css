@@ -3,14 +3,13 @@
     justify-self: center;
     height: 100vh;
     align-items: center;
-    width: 75vw;
-    margin-left: 25vw;
+    width: 100vw;
 }
 
 .formWrapper {
     width: 30%;
     margin-top: 20vh;
-    margin-left: 26.5vw;
+    margin-left: 34.5vw;
 }
 
 .header {

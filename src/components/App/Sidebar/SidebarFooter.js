@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import EventLayout from "./EventLayout/EventLayout";
+import EventLayout from "../EventLayout/EventLayout";
 import './SidebarFooter.css';
 
 function SideFooter({ currView }) {

@@ -1,6 +1,6 @@
 .contentBox {
-    position: fixed;
-    margin-top: 85vh;
+    position: absolute;
+    bottom: -5vh;
     width: 23vw;
     height: 20%;
 }

@@ -40,7 +40,7 @@ export function EventController({children}) {
     setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
   };
 
-  const getEventsById = (id) => {
+  const getEventById = (id) => {
     return eventDetails.find((event) => event.eventId === id);
   };
 
@@ -49,7 +49,7 @@ export function EventController({children}) {
   }
 
   return (
-      <EventContext.Provider value={{ eventDetails, eventDates, createEvent }}>
+      <EventContext.Provider value={{ eventDetails, eventDates, createEvent, getEventById, getDatesForEvent }}>
             {children}
       </EventContext.Provider>
   );
