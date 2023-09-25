@@ -41,14 +41,14 @@ function Sidebar({ selectedDate, currentView }) {
 
   return (
     <div className='sidebar'>
-      <p className='selDate'>
+      <div className='selDate'>
         {<span className='month'> {month} </span>}
         {<br/>}
         {<span className='day'> {day} </span>}
         {<span className='year'> {year} </span>}
         {<br></br>}
         {<span className='weekday'> {weekday} </span>}
-      </p>
+      </div>
       <SideFooter className='footer' currView={currentView} />
     </div>
   );

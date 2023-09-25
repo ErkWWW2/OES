@@ -8,11 +8,14 @@ function SideFooter({ currView }) {
 
     return(
         <div className="contentBox">
-        <Link className="viewShiftButton" to={link} >
+        <Link className="viewShiftButton" to={link} > 
             <div className="tooltiptext">View {linktext} </div>
         </Link>
         <Link className="createEventButton" to={'/newEvent'}>
             <div className="tooltiptext">Create New Event</div>
+        </Link>
+        <Link className="viewShiftButton" to={'/ConfigureProfile'} > 
+            <div className="tooltiptext">Profile</div>
         </Link>
         </div>
     );
