@@ -29,7 +29,7 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
             if (idArray) {
               return(
                 <div>
-                  {idArray.map(id => (
+                  {idArray.filter(id => eventController.getEventById(id).part.includes(userController.logUser)).map(id => (
                     <div className='calEvent'>
                       {eventController.getNameById(id)}
                     </div>
