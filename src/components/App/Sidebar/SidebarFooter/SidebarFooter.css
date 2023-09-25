@@ -68,7 +68,7 @@
     display: inline-grid;
     width: 70%;
     height: 40%;
-    background-color: #4fb94f;
+    background-color: white;
     border-radius: 15px;
     text-decoration: none;
     box-shadow: 
@@ -97,7 +97,7 @@
 }
 
 .createEventButton:hover {
-    background-color: #4a8a4a;
+    background-color: #0068d8;
     box-shadow: 
         0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
         0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
@@ -143,7 +143,7 @@
     display: inline-grid;
     width: 70%;
     height: 40%;
-    background-color: #676767;
+    background-color: white;
     border-radius: 15px;
     text-decoration: none;
     box-shadow: 
@@ -164,7 +164,7 @@
 }
 
 .confUserButton:hover {
-    background-color: #a2a2a2;
+    background-color: #0068d8;
     box-shadow: 
         0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
         0px 1.5px 2px 0px rgba(0, 0, 0, 0.2), 
