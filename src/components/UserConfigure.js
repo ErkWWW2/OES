@@ -31,7 +31,7 @@ function ProfilePage() {
 
   return (
 
-    <dive className = "pContainer">
+    <div className = "pContainer">
     <div className="profile-container">
   <h2 className="profile-heading">Edit Profile</h2>
   <form onSubmit={handleSubmit} className="profile-form">
@@ -79,7 +79,7 @@ function ProfilePage() {
     </button>
   </form>
 </div>
-</dive>
+</div>
   );
 }
 
