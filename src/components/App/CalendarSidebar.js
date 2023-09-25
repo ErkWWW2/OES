@@ -25,7 +25,7 @@ function getWeekDay(date) {
   return dateFormatter.format(date);
 }
 
-function Sidebar({ selectedDate, currentView }) {
+function Sidebar({ selectedDate, selectedEvent, currentView }) {
   // Extract year from the date
   const year = selectedDate ? '- ' + selectedDate.getFullYear() : '';
 

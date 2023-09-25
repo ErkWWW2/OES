@@ -50,8 +50,8 @@ input {
     margin-bottom: 1vh;
 }
 
-.react-datepicker-wrapper {
-    width: 100%;
+.datePicker {
+    width: 105%;
 }
 
 .inputName {
@@ -80,7 +80,7 @@ input {
     border-image: initial;
     border-radius: 4px;
     padding: 6px 10px 5px;
-    max-height: 40vh;
+    max-height: 30vh;
     min-height: 2vh;
     margin-bottom: 1vh;
 }
@@ -98,4 +98,8 @@ input {
     border-radius: 4px;
     padding: 6px 10px 5px;
     margin-bottom: 1vh;
+}
+
+.MuiPickersDay-dayOutsideMonth  {
+    color: rgb(155, 155, 155, 0.8)!important;
 }
