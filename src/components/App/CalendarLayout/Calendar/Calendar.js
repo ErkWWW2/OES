@@ -17,17 +17,17 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
           if (view === 'month') {
             const id = eventController.getEventIdForDate(date);
             const name = id ? eventController.getNameById(id): '';
-
-            if (id) {
-              return(
-                <div className='calEvent'>
-                  <p>{name}</p>
-                </div>
-              );
-            }
-            else
-              return;
-            
+              if (id) {
+                if(eventController.getEventById(id).part.includes(userController.logUser))
+                { 
+                  return(
+                    <div className='calEvent'>
+                      <p>{name}</p>
+                    </div>
+                  );
+                } else return;
+              }
+              else return;
           }
         }}
       />

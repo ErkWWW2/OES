@@ -13,13 +13,11 @@ function EventComponent({ selectedEvent, setSelectedEvent }) {
 
     const events = {};
     eventController.eventDates.forEach(eventDate => {
-        //if(eventController.eventDetails.part.includes(userController.logUser)){
-            if (!events[eventDate.eventId]) {
-            events[eventDate.eventId] = [];
-            }
+        if (!events[eventDate.eventId]) {
+        events[eventDate.eventId] = [];
+        }
 
-            events[eventDate.eventId].push(eventDate); 
-        //}
+        events[eventDate.eventId].push(eventDate); 
     })
 
     return (
