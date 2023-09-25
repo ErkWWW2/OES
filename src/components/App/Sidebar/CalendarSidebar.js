@@ -1,6 +1,6 @@
 import React from 'react';
-import SideFooter from './SidebarFooter';
-import SidebarBody from './SidebarBody';
+import SideFooter from './SidebarFooter/SidebarFooter';
+import SidebarBody from './SidebarBody/SidebarBody';
 import './CalendarSidebar.css';
 
 function Sidebar({ selectedDate, selectedEvent, currentView }) {
