@@ -78,7 +78,7 @@
     box-shadow 0.2s;
 }
 
-.react-calendar__tile .calEvent:hover {
+.react-calendar__tile:hover .calEvent {
   background-color: #0068d8;
   box-shadow: 
       0px 1.5px 1.5px -1px rgba(0, 0, 0, 0.3), 
