@@ -34,7 +34,7 @@ function LoginForm({ onSubmit, errors }) {
 
             <div className="LoginformGroup">
               <input
-                type="text"
+                type="password"
                 id="password"
                 name="pwassword"
                 value={password}
