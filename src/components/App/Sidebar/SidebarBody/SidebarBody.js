@@ -3,10 +3,10 @@ import EventLayout from '../../EventLayout/EventLayout';
 import CalendarLayout from '../../CalendarLayout/CalendarLayout';
 import { useEventContext } from "../../../../server/EventController";
 import './SidebarBody.css';
-import Button from '@mui/material/Button';
 import { useUserContext } from "../../../../server/UserController";
 import VoteDialog from "../../VoteDialog/VoteDialog";
 import EditDialog from "../../EditDialog/EditDialog";
+import { getTime } from "date-fns";
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {
@@ -38,6 +38,9 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
 
   const eventController = useEventContext();  // Get event context
   const userController = useUserContext();    // Get user context
+
+  // Options for date formatting
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 
   const year = selectedDate ? '- ' + selectedDate.getFullYear() : ''; // Extract year from the date
 
@@ -94,7 +97,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                 {eventDates?.map(item => (
                     <p key={item}>
                         <span>{'[' + item.votes + '] '}</span>
-                        <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
+                        <span>{item.start.toLocaleDateString('en-GB', options) + " - " + item.end.toLocaleDateString('en-GB', options)}</span>
                     </p>
                 ))}
                 {event.org.includes(userController.logUser) ? EditDialog(event)

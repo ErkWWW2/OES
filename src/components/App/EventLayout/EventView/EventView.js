@@ -8,6 +8,9 @@ function EventComponent({ setSelectedEvent }) {
     const eventController = useEventContext();  // Get event context
     const userController = useUserContext();    // Get user context
 
+    // Options for date formatting
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
     // Get events
     const events = {};
     eventController.eventDates.forEach(eventDate => {
@@ -31,7 +34,7 @@ function EventComponent({ setSelectedEvent }) {
                                     {events[event.eventId]?.map(item => (
                                         <p key={item}>
                                             <span>{'[' + item.votes + '] '}</span>
-                                            <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
+                                            <span>{item.start.toLocaleDateString('en-GB', options) + " - " + item.end.toLocaleDateString('en-GB', options)}</span>
                                         </p>
                                     ))}
                                 </div>
