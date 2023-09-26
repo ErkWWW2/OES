@@ -5,6 +5,8 @@ import { useEventContext } from "../../../../server/EventController";
 import './SidebarBody.css';
 import Button from '@mui/material/Button';
 import { useUserContext } from "../../../../server/UserController";
+import VoteDialog from "../../VoteDialog/VoteDialog";
+import EditDialog from "../../EditDialog/EditDialog";
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {
@@ -95,8 +97,8 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                         <span>{item.start.toDateString() + " - " + item.end.toDateString()}</span>
                     </p>
                 ))}
-                {event.org.includes(userController.logUser) ? <Button variant="contained" color="primary" onClick={() => eventController.clickSelEvent(event.eventId)}> Edit </Button>
-                                                            : <Button variant="contained" color="primary" onClick={() => eventController.clickSelEvent(event.eventId)}> Vote! </Button>}
+                {event.org.includes(userController.logUser) ? EditDialog(event)
+                                                            : VoteDialog(event)}
             </div>
         );
     }
