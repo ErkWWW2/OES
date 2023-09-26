@@ -14,7 +14,7 @@ import { blue } from '@mui/material/colors';
 import { useUserContext } from '../../../server/UserController';
 import { useEventContext } from '../../../server/EventController';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+const options = ['<Event options>', '<More event otions>'];
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
@@ -31,10 +31,10 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Edit selected event</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem disableGutters key={email}>
-            <ListItemButton onClick={() => handleListItemClick(email)}>
-              <ListItemText primary={email} />
+        {options.map((option) => (
+          <ListItem disableGutters key={option}>
+            <ListItemButton onClick={() => handleListItemClick(option)}>
+              <ListItemText primary={option} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -43,7 +43,7 @@ function SimpleDialog(props) {
             autoFocus
             onClick={() => handleListItemClick('addAccount')}
           >
-            <ListItemText primary="Add account" />
+            <ListItemText primary="<Even more options>" />
           </ListItemButton>
         </ListItem>
       </List>
@@ -59,7 +59,7 @@ SimpleDialog.propTypes = {
 
 export default function EditDialog(event) {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState(options[1]);
 
   const userController = useUserContext();
   const eventController = useEventContext();
