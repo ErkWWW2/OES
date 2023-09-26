@@ -12,6 +12,13 @@ export function EventController({children}) {
   const votes = 0;
   const voters = [];
 
+  // Function for creating a new event 
+  // Name: string for the name of the event
+  // Desc: string of text describing the event
+  // Part: List of participant id's
+  // Org: List of organizer id's
+  // Start: Start date and time as a Date
+  // End: Start date and time as a Date
   const createEvent = (name, desc, part, org, start, end) => {
     let eventId = eventDetails.length + 1;
     const newEventDetails = { eventId, name, desc, part, org };
@@ -40,14 +47,21 @@ export function EventController({children}) {
     setEventDates((prevEventDate) => [...prevEventDate, newEventDate]);
   };
 
+  // Function that returns the EventDetails of an event
+  // Id: the event id as a Number
   const getEventById = (id) => {
     return eventDetails.find((event) => event.eventId === id);
   };
 
+  // Function that returns the EventDetes of an event
+  // Id: the event id as a Number
   const getDatesForEvent = (id) => {
     return (eventDates.filter((event) => event.eventId === id));
   }
 
+  // Function that returns an array of event ids
+  // Date: the date of interest
+  // Returns: an array of ids
   const getEventIdsForDate = (date) => {
     const array = [];
 
@@ -68,6 +82,9 @@ export function EventController({children}) {
     return array;
   }
 
+  // Function that returns the name of an event
+  // Id: The id of the event
+  // Returns: The name of the event as a string
   const getNameById = (id) => {
     return(eventDetails.find((event) => event.eventId === id).name);
   }

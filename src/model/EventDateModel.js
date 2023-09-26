@@ -20,6 +20,13 @@ const EventDateModel = [
         votes: 0, 
         voters: [] 
     },
+    { 
+        start: new Date(2023, 8, 10, 9, 0), 
+        end: new Date(2023, 8, 17, 11, 0), 
+        eventId: 3, 
+        votes: 0, 
+        voters: [] 
+    },
 ];
 
 export default EventDateModel;

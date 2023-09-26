@@ -6,7 +6,6 @@ import './SidebarBody.css';
 import { useUserContext } from "../../../../server/UserController";
 import VoteDialog from "../../VoteDialog/VoteDialog";
 import EditDialog from "../../EditDialog/EditDialog";
-import { getTime } from "date-fns";
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {

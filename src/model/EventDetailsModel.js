@@ -9,9 +9,16 @@ const EventDetailsModel = [
     { 
         eventId: 2, 
         name: 'Event 2', 
-        desc: 'This event is for testing events', 
+        desc: 'This event is for general testing', 
         part: [2,3], 
         org: [2] 
+    },
+    {
+        eventId: 3, 
+        name: 'Event 3', 
+        desc: 'This event is for testing event ranges', 
+        part: [1,2,3], 
+        org: [1,2] 
     },
 ];
 
