@@ -4,12 +4,13 @@ import EventComponent from './EventView/EventView'; // Import the Calendar compo
 import './EventLayout.css'
 
 function EventLayout() {
+  // State that handles currently selected event
   const [selEvent, setSelEvent] = useState();
 
   return (
     <div className="layout">
       <Sidebar currentView={EventLayout} selectedEvent = {selEvent}/>
-      <EventComponent selectedEvent = {selEvent} setSelectedEvent = {setSelEvent}/>
+      <EventComponent setSelectedEvent = {setSelEvent}/>
     </div>
   );
 }

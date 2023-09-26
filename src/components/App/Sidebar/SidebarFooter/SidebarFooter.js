@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import EventLayout from "../../EventLayout/EventLayout";
 import "./SidebarFooter.css";
-import logo from "./calendar.png";
+import logo from "./swap.png";
 import user from "./user.png";
 import plus from "./plus.png";
 
 function SideFooter({ currView }) {
+  // Change link depending on the current view
   const link = currView === EventLayout ? "/calendar" : "/events";
   const linktext = currView === EventLayout ? "the calendar" : "your events";
 

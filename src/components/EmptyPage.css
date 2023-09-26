@@ -20,7 +20,7 @@
     background-color:#14C2CC;
     background-image: 
     radial-gradient(circle farthest-side at top right, transparent, #0D64FF), radial-gradient(ellipse farthest-corner at 0% 100%, transparent, #FF00A0);
-    animation:bg-change 10s infinite;
+    animation:bg-change 5s infinite;
 }
 
 .emptyContent {

@@ -5,9 +5,10 @@ import './Calendar.css';
 import { useUserContext } from '../../../../server/UserController';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {
-  const eventController = useEventContext();
-  const userController = useUserContext();
+  const eventController = useEventContext();  // Get event context
+  const userController = useUserContext();    // Get user context
 
+  // Get Events
   const events = {};
     eventController.eventDates.forEach(eventDate => {
         if (!events[eventDate.eventId]) {
@@ -20,12 +21,13 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
   return (
     <div className='calendarContainer'>
       <Calendar 
-        onChange={setSelectedDate} 
-        value={selectedDate}
+        onChange={setSelectedDate} // Change state 
+        value={selectedDate}       // Value to send to state
         tileContent={({ date, view }) => {
           if (view === 'month') {
-            const idArray = eventController.getEventIdsForDate(date);
+            const idArray = eventController.getEventIdsForDate(date); // Get events on date
 
+            // Map eventsId that the user has permisson to view
             if (idArray) {
               return(
                 <div>

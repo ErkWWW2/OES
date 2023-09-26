@@ -6,33 +6,40 @@ import './SidebarBody.css';
 import Button from '@mui/material/Button';
 import { useUserContext } from "../../../../server/UserController";
 
+// This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {
-    if (day >= 11 && day <= 13) {
+  if (day >= 11 && day <= 13) {
+    return `${day}th`;
+  }
+  
+  switch (day % 10) {
+    case 1:
+      return `${day}st`;
+    case 2:
+      return `${day}nd`;
+    case 3:
+      return `${day}rd`;
+    default:
       return `${day}th`;
-    }
-  
-    switch (day % 10) {
-      case 1:
-        return `${day}st`;
-      case 2:
-        return `${day}nd`;
-      case 3:
-        return `${day}rd`;
-      default:
-        return `${day}th`;
-    }
   }
-  
-  function getWeekDay(date) {
-    const options = { weekday: 'long'}; // 'long' gives the full name of the weekday
-      const dateFormatter = new Intl.DateTimeFormat('en-US', options);
-    return dateFormatter.format(date);
-  }
+}
+
+// This function takes a date and returns the specific weekday of the date
+function getWeekDay(date) {
+  const options = { weekday: 'long'}; // 'long' gives the full name of the weekday
+    const dateFormatter = new Intl.DateTimeFormat('en-US', options);
+  return dateFormatter.format(date);
+}
+
 
 function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
-    // Extract year from the date
-  const year = selectedDate ? '- ' + selectedDate.getFullYear() : '';
 
+  const eventController = useEventContext();  // Get event context
+  const userController = useUserContext();    // Get user context
+
+  const year = selectedDate ? '- ' + selectedDate.getFullYear() : ''; // Extract year from the date
+
+  // Add month names as array
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June', 
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -43,14 +50,14 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const day = selectedDate ? getDayWithSuffix(selectedDate.getDate()) : '';
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
-  const eventController = useEventContext();
-  const userController = useUserContext();
-
+  // Get events for the selected date, if these is one
   const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
   
+  // Get details and dates for selected event, if there is one
   const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
   const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
 
+  // If the current view is to show the calendar
   if (currentView === CalendarLayout)
   {
     return(
@@ -74,6 +81,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
         </div>
     );
   }
+  // If the current view is to show events
   else if (currentView === EventLayout) {
     if (selectedEvent)
     {

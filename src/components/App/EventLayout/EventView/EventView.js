@@ -4,10 +4,11 @@ import './EventView.css';
 import { useEventContext } from "../../../../server/EventController";
 import { useUserContext } from "../../../../server/UserController";
 
-function EventComponent({ selectedEvent, setSelectedEvent }) {
-    const eventController = useEventContext();
-    const userController = useUserContext();
+function EventComponent({ setSelectedEvent }) {
+    const eventController = useEventContext();  // Get event context
+    const userController = useUserContext();    // Get user context
 
+    // Get events
     const events = {};
     eventController.eventDates.forEach(eventDate => {
         if (!events[eventDate.eventId]) {

@@ -4,6 +4,7 @@ import Calendar from './Calendar/Calendar'; // Import the Calendar component
 import './CalendarLayout.css'; // Import the CSS for your layout
 
 function CalendarLayout() {
+  // State hanlding the currently selected date
   const [date, setDate] = useState(new Date());
 
   return (

@@ -4,11 +4,11 @@ import makeAnimated from 'react-select/animated';                   // React-sel
 import { DateTimePicker } from '@mui/x-date-pickers';               // Material UI DateTimePicker
 import { LocalizationProvider } from '@mui/x-date-pickers';         // Date Localization
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns' // Date Localization Adapter
-import {enGB } from '@mui/x-date-pickers/locales'
 import "./CreateEventView.css";
 
 
 function CreateEventForm({ onSubmit, errors, users }) {
+    // Have states for all variables to be used in creation of event
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [part, setPart] = useState();
@@ -20,6 +20,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
     // React-select animation component
     const animatedComponents = makeAnimated();
 
+    // Function to call when submit button is pressed
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(name, desc, part, org, start, end);
@@ -32,6 +33,7 @@ function CreateEventForm({ onSubmit, errors, users }) {
             <div className="formWrapper">
                 <form onSubmit={handleSubmit}>
                     <div className="formGroup1">
+                        
                         <input 
                          name="name"
                          type="text"
