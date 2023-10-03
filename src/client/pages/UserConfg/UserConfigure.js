@@ -1,7 +1,6 @@
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserConfigure.css'
-import { useUserContext } from '../server/UserController.js'; // Import your UserContext
 
 function ProfilePage() {
   const { getUserById, updateUser, logUser } = useUserContext();

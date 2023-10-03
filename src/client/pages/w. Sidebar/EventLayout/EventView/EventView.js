@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Grid } from '@mui/material';
 import './EventView.css';
-import { useEventContext } from "../../../../server/EventController";
-import { useUserContext } from "../../../../server/UserController";
+import { getEventById } from "../../../../../server/controllers/EventController2";
+import { response } from "express";
 
 function EventComponent({ setSelectedEvent }) {
-    const eventController = useEventContext();  // Get event context
-    const userController = useUserContext();    // Get user context
+    const [userEvents, setUserEvents] = useState([]);
 
     // Options for date formatting
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+
+    useEffect(() => {
+        // Make HTTP GET request to fetch events for user
+        axios.get('api/events/user/1')
+            .then(response => {
+                setUserEvents(response.data);
+            })
+            .catch(error => {   
+                console.error('Error fetching events for user', error);
+            });
+    }, []);
 
     // Get events
     const events = {};

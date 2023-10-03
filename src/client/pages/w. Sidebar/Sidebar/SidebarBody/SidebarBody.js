@@ -1,11 +1,9 @@
 import React from "react";
-import EventLayout from '../../EventLayout/EventLayout';
-import CalendarLayout from '../../CalendarLayout/CalendarLayout';
-import { useEventContext } from "../../../../server/EventController";
+import EventLayout from "../../EventLayout/EventLayout";
+import CalendarLayout from "../../CalendarLayout/CalendarLayout";
+import VoteDialog from '../../../Dialogs/VoteDialog/VoteDialog';
+import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
 import './SidebarBody.css';
-import { useUserContext } from "../../../../server/UserController";
-import VoteDialog from "../../VoteDialog/VoteDialog";
-import EditDialog from "../../EditDialog/EditDialog";
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {
@@ -35,8 +33,8 @@ function getWeekDay(date) {
 
 function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
 
-  const eventController = useEventContext();  // Get event context
-  const userController = useUserContext();    // Get user context
+  // const eventController = useEventContext();  // Get event context
+  // const userController = useUserContext();    // Get user context
 
   // Options for date formatting
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
@@ -55,11 +53,11 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
   // Get events for the selected date, if these is one
-  const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
+  // const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
   
   // Get details and dates for selected event, if there is one
-  const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
-  const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
+  // const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
+  // const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
 
   // If the current view is to show the calendar
   if (currentView === CalendarLayout)
@@ -77,8 +75,8 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
             {<div>
               {idArray.map(id => (
                 <div className='calEvent'>
-                  <h1>{eventController.getNameById(id)}</h1>
-                  <p>{eventController.getDescById(id)}</p>
+                  <h1>{/*eventController.getNameById(id)*/}</h1>
+                  <p>{/*eventController.getDescById(id)*/}</p>
                 </div>
               ))}
             </div>}

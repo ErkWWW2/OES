@@ -25,10 +25,10 @@ npm i --save react-select
 <br>
 
 ## Start Your Development Server:
-Runs the app in the development mode.\
+Runs the app in the development mode. This builds the program and starts the application on the server.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ```
-npm dev
+npm run dev
 ```
 <br>
 
