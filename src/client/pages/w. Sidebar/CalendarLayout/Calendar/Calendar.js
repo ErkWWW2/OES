@@ -13,6 +13,7 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
   const [userEvents, setUserEvents] = useState([]);
 
   useEffect(() => {
+    // GET HTTP request to /api/events/:userId
     axios.get(`/api/events/${userId}`)
       .then(response => {
         setUserEvents(response.data.events);

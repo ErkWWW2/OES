@@ -11,19 +11,39 @@ function EventComponent({ setSelectedEvent }) {
     const eventController = useEventContext();
     const userController = useUserContext();
 
+    const userId = userController.logUser;
     // Options for date formatting
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 
     useEffect(() => {
-        // Make HTTP GET request to fetch events for user
-        axios.get('api/events/user/2')
-            .then(response => {
-                setUserEvents(response.data);
-            })
-            .catch(error => {   
-                console.error('Error fetching events for user', error);
+        // GET HTTP request to /api/events/:userId
+        axios.get(`/api/events/${userId}`)
+          .then(response => {
+            setUserEvents(response.data.events);
+
+            const eventDatesPromise = response.data.events.map(eventId => {
+                return axios.get(`/api/event-dates/${eventId}`)
+                    .then(dateResponse => {
+                        return dateResponse.data;
+                    })
+                    .catch(dateError => {
+                        console.error('Error fetching event dates: ', dateError);
+                        return [];
+                    });
             });
-    }, []);
+
+            Promise.all(eventDatesPromise)
+                .then(eventDates => {
+                    console.log("Event Dates for User Events: ", eventDates);
+                })
+                .catch(allDatesError => {
+                    console.error('Error fetching all event dates: ', allDatesError);
+                });
+          })
+          .catch(error => {
+            console.error('Error fetching user events: ', error);
+          });
+      }, []); // Use empty dependency array
 
     // Get events
     const events = {};
