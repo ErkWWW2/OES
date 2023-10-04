@@ -22,8 +22,4 @@ const EventDetailsModel = [
     },
 ];
 
-const getEventById = (id) => {
-    return EventDetailsModel.find((event) => event.eventId === id);
-  };
-
-export default { getEventById };
+export default EventDetailsModel;
