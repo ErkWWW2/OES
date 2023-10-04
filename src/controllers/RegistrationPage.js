@@ -1,8 +1,8 @@
 // RegistrationPage.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import RegistrationForm from "../components/login/LoginCreateAccount";
-import { validateForm } from "../model/LoginModel";
+import RegistrationForm from "../client/pages/login/LoginCreateAccount";
+import { validateForm } from "../client/model/LoginModel";
 import { useUserContext } from './UserController.js';
 
 function RegistrationPage() {

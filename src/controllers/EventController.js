@@ -1,6 +1,6 @@
 import { useState, createContext, useContext } from 'react';
-import EventDateModel from '../model/EventDateModel';
-import EventDetailsModel from '../model/EventDetailsModel';
+import EventDateModel from '../client/model/EventDateModel';
+import EventDetailsModel from '../client/model/EventDetailsModel';
 
 // Create context
 const EventContext = createContext();
@@ -50,7 +50,7 @@ export function EventController({children}) {
   // Function that returns the EventDetails of an event
   // Id: the event id as a Number
   const getEventById = (id) => {
-    return eventDetails.find((event) => event.eventId === id);
+    return (eventDetails.find((event) => event.eventId === id));
   };
 
   // Function that returns the EventDetes of an event

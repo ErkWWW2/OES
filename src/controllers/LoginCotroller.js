@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../components/login/LoginView.js';
+import LoginForm from '../client/pages/login/LoginView';
 import { useUserContext } from './UserController.js';
 
 const LoginController = () => {

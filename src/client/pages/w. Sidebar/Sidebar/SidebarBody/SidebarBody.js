@@ -1,11 +1,11 @@
 import React from "react";
-import EventLayout from '../../EventLayout/EventLayout';
-import CalendarLayout from '../../CalendarLayout/CalendarLayout';
-import { useEventContext } from "../../../../server/EventController";
+import EventLayout from "../../EventLayout/EventLayout";
+import CalendarLayout from "../../CalendarLayout/CalendarLayout";
+import VoteDialog from '../../../Dialogs/VoteDialog/VoteDialog';
+import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
+import { useUserContext } from "../../../../../controllers/UserController";
+import { useEventContext } from "../../../../../controllers/EventController";
 import './SidebarBody.css';
-import { useUserContext } from "../../../../server/UserController";
-import VoteDialog from "../../VoteDialog/VoteDialog";
-import EditDialog from "../../EditDialog/EditDialog";
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
 function getDayWithSuffix(day) {
@@ -77,8 +77,8 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
             {<div>
               {idArray.map(id => (
                 <div className='calEvent'>
-                  <h1>{eventController.getNameById(id)}</h1>
-                  <p>{eventController.getDescById(id)}</p>
+                  <h1>{/*eventController.getNameById(id)*/}</h1>
+                  <p>{/*eventController.getDescById(id)*/}</p>
                 </div>
               ))}
             </div>}

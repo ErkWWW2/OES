@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import CreateEventLayout from "../components/App/CreateEventLayout/CreateEventLayout";
+import CreateEventLayout from "../client/pages/login/LoginCreateAccount";
 import { useUserContext } from "./UserController";
-import { validateForm } from "../model/CreateEventModel";
+import { validateForm } from "../client/model/CreateEventModel";
 import { useEventContext } from "./EventController";
 
 function CreateEventController () {

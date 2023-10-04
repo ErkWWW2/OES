@@ -1,13 +1,13 @@
 import './App.css';
 import { } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginController from './server/LoginCotroller.js';
-import CalendarLayout from './components/App/CalendarLayout/CalendarLayout';
-import ProfilePage from './components/UserConfigure'
-import EventLayout from './components/App/EventLayout/EventLayout';
-import RegistrationPage from './server/RegistrationPage'
-import CreateEventController from './server/CreateEventController';
-import EmptyPage from './components/EmptyPage';
+import LoginController from '../controllers/LoginCotroller';
+import RegistrationPage from '../controllers/RegistrationPage';
+import CreateEventController from '../controllers/CreateEventController';
+import ProfilePage from './pages/UserConfg/UserConfigure';
+import CalendarLayout from './pages/w. Sidebar/CalendarLayout/CalendarLayout';
+import EventLayout from './pages/w. Sidebar/EventLayout/EventLayout';
+import EmptyPage from './pages/ErrorPage/EmptyPage';
 
 function App() {
   return (
