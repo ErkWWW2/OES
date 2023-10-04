@@ -16,7 +16,7 @@ function EventComponent({ setSelectedEvent }) {
 
     useEffect(() => {
         // Make HTTP GET request to fetch events for user
-        axios.get('api/events/user/1')
+        axios.get('api/events/user/2')
             .then(response => {
                 setUserEvents(response.data);
             })

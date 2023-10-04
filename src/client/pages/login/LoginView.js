@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import "./LoginView.css";
 import AnimatedText from "../Animated.js";
 
@@ -53,7 +52,7 @@ function LoginForm({ onSubmit, errors }) {
           Don't have an account? <Link to="/register">Create one</Link>
         </p>
       </div>
-
+      
       <div className="Loginright">
         <AnimatedText className="AnimatedText" text="EEasy scheduling ahead!" />
       </div>

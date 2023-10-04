@@ -8,7 +8,6 @@ const LoginController = () => {
   const navigate = useNavigate();
 
   const userController = useUserContext();  //Access to UserController
-  console.log(userController.users);
 
   const handleSubmit = (name, password) => {
 
@@ -20,7 +19,6 @@ const LoginController = () => {
 
     if (user) {
       // User exists, navigate to the appropriate page (e.g., '/calendar')
-      console.log(user.id);
       userController.confLogUser(user.id);
       navigate('/calendar');
     } else {

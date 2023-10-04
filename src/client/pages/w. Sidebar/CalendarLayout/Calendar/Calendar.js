@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import { useEventContext } from '../../../../../controllers/EventController';
 import { useUserContext } from '../../../../../controllers/UserController';
+import axios from 'axios';
 import './Calendar.css';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {
   const eventController = useEventContext();  // Get event context
   const userController = useUserContext();    // Get user context
+
+  const userId = userController.logUser;
+  const [userEvents, setUserEvents] = useState([]);
+
+  useEffect(() => {
+    axios.get(`/api/events/${userId}`)
+      .then(response => {
+        setUserEvents(response.data.events);
+      })
+      .catch(error => {
+        console.error('Error fetching user events: ', error);
+      });
+  }, []); // Use empty dependency array
+    
 
   // Get Events
   const events = {};
