@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react';
-import UserModel from '../model/UserModel';
+import UserModel from '../client/model/UserModel';
 
 //Create a context
 const UserContext = createContext();

@@ -11,6 +11,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
+import { useUserContext } from '../../../../controllers/UserController';
+import { useEventContext } from '../../../../controllers/EventController';
 
 const options = ['<Event options>', '<More event otions>'];
 

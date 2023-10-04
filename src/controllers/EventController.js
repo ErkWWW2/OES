@@ -1,6 +1,6 @@
 import { useState, createContext, useContext } from 'react';
-import EventDateModel from '../model/EventDateModel';
-import EventDetailsModel from '../model/EventDetailsModel';
+import EventDateModel from '../client/model/EventDateModel';
+import EventDetailsModel from '../client/model/EventDetailsModel';
 
 // Create context
 const EventContext = createContext();

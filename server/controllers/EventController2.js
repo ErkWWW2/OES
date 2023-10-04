@@ -1,5 +1,3 @@
-const EventDetails = require("../model/EventDetailsModel");
-const EventDates = require("../model/EventDateModel");
 const { paste } = require("@testing-library/user-event/dist/paste");
 
 const EventDetailsModel = [
@@ -29,18 +27,20 @@ const EventDetailsModel = [
 async function getEventById(req, res)
 {
     id = req.params.userId; // Get the event id from the call URL
-    res.send(EventDetails.getEventById(id));
+    res.send(id);
 }
 
 async function getEventForUser(req, res)
 {
     const userId = req.params.userId;
 
+    /*
     const userEvents = EventDetailsModel
         .filter(event => event.part.includes(parseInt(userId)))
         .map(event => event.eventId);
 
-    res.json({events: userEvents});
+    res.json({events: userEvents}); 
+    */
 }
 
 module.exports = { getEventById, getEventForUser };

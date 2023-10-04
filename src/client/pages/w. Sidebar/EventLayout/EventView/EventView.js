@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Grid } from '@mui/material';
+import { useEventContext } from "../../../../../controllers/EventController";
+import { useUserContext } from "../../../../../controllers/UserController";
 import './EventView.css';
-import { getEventById } from "../../../../../server/controllers/EventController2";
-import { response } from "express";
 
 function EventComponent({ setSelectedEvent }) {
     const [userEvents, setUserEvents] = useState([]);
+
+    const eventController = useEventContext();
+    const userController = useUserContext();
 
     // Options for date formatting
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};

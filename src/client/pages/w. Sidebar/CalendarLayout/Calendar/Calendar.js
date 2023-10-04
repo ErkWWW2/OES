@@ -1,5 +1,7 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import { useEventContext } from '../../../../../controllers/EventController';
+import { useUserContext } from '../../../../../controllers/UserController';
 import './Calendar.css';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {

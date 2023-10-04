@@ -1,5 +1,5 @@
 const express = require("express");
-const routes = require("./routes");
+const eventRoutes = require("./routes/EventRoutes");
 const path = require("path");
 
 const app = express();
@@ -8,7 +8,7 @@ const port = 3000;
 // Starts the web application
 app.use(express.static("build"));
 
-app.use("/api", routes);
+app.use("/api", eventRoutes);
 
 app.listen(port, () => {
   console.log(port);

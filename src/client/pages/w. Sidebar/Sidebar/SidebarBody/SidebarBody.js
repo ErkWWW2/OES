@@ -3,6 +3,8 @@ import EventLayout from "../../EventLayout/EventLayout";
 import CalendarLayout from "../../CalendarLayout/CalendarLayout";
 import VoteDialog from '../../../Dialogs/VoteDialog/VoteDialog';
 import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
+import { useUserContext } from "../../../../../controllers/UserController";
+import { useEventContext } from "../../../../../controllers/EventController";
 import './SidebarBody.css';
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
@@ -33,8 +35,8 @@ function getWeekDay(date) {
 
 function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
 
-  // const eventController = useEventContext();  // Get event context
-  // const userController = useUserContext();    // Get user context
+  const eventController = useEventContext();  // Get event context
+  const userController = useUserContext();    // Get user context
 
   // Options for date formatting
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
@@ -53,11 +55,11 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
   // Get events for the selected date, if these is one
-  // const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
+  const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
   
   // Get details and dates for selected event, if there is one
-  // const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
-  // const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
+  const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
+  const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
 
   // If the current view is to show the calendar
   if (currentView === CalendarLayout)
