@@ -32,6 +32,7 @@ function EventComponent({ setSelectedEvent }) {
                         });
                 });
 
+                // Create promise so that we can use async functions
                 Promise.all(eventDatesPromise)
                     .then(eventDate => {
                         setEventDates(eventDate);
@@ -48,22 +49,16 @@ function EventComponent({ setSelectedEvent }) {
             });
     }, []); // Use empty dependency array
 
-      // Check the state arrays are correctly updated
-    useEffect(() => {
-        console.log(userEvents);
-        console.log(eventDates);
-    }, [userEvents, eventDates]);
-
     let events = null;
     if (!isLoading) {
         events = userEvents.map(event => {
             const eventDatesForEvent = eventDates
-                .flatMap(dateArray => dateArray)                                        // Flatten the array of arrays
-                .filter(date => date.eventId === event.eventId)                         // Get only dates for the current event
-                .map(date => ({
+                .flatMap(dateArray => dateArray)                // Flatten the array of arrays
+                .filter(date => date.eventId === event.eventId) // Get only dates for the current event
+                .map(date => ({                                 // Get the correct parameters
                     start: new Date(date.start), 
                     end: new Date(date.end), 
-                    votes: date.votes}));  // Get the correct parameters
+                    votes: date.votes}));
     
             return (
                 <Grid item key={event.eventId} xs={12} sm={6} md={4}>

@@ -65,6 +65,7 @@
 }
 
 .react-calendar__tile .calEvent {
+  color: #f0f0f0;
   background-color: #007bff;
   padding: 5%;
   border: 2px solid black;
@@ -128,12 +129,3 @@
   height: 95vh;
 }
 /* Calendar Month View Tiles */ 
-
-.event-indicator {
-  top: 2px;
-  right: 2px;
-  width: 8px;
-  height: 8px;
-  background-color: red;
-  border-radius: 50%;
-}
