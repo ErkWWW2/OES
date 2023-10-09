@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../client/pages/login/LoginView';
 import { useUserContext } from './UserController.js';
+import axios from 'axios';
 
 const LoginController = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const userController = useUserContext();  //Access to UserController
+  const userController = useUserContext();
 
-  const handleSubmit = (name, password) => {
+  const handleSubmit = async (username, password) => {
+    try {
+      const response = await axios.post('http://localhost:5002/login', { username, password });
 
-    // if (Object.keys(validationErrors).length === 0) {
-    // Attempt to find the user by username and password
-    const user = userController.users.find(
-      (u) => u.username === name && u.password === password
-    );
-
-    if (user) {
-      // User exists, navigate to the appropriate page (e.g., '/calendar')
-      userController.confLogUser(user.id);
-      navigate('/calendar');
-    } else {
-      // User not found, display an error message
-      setErrors({ ...errors, password: 'Invalid username or password' });
-    // }
+      if (response.status == 200) {
+        // If the response indicates success, navigate to the appropriate page
+        userController.confLogUser(response.data.userId);
+        navigate('/calendar');
+      } else {
+        // If the response indicates failure, display an error message
+        setErrors({ ...errors, password: response.data.message });
+      }
+    } catch (error) {
+      console.error(error.response.data.message);
+      // Handle other error cases here, if needed
     }
   };
 

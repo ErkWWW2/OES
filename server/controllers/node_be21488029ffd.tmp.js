@@ -64,7 +64,7 @@ app.use(cors());
 
 // Register a new user
 app.post('/register', async (req, res) => {
-  console.log("user try to login");
+  console.log("user try to register");
   try {
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
