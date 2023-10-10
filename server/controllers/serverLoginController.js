@@ -1,17 +1,11 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const db = require("./db"); // Import the MongoDB connection
-const User = require("./user"); // Import the User model
-const cors = require("cors");
+const User = require("../model/user"); // Import the User model
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(cors());
+
 
 // User Registration
-app.post("/register", async (req, res) => {
+//app.post("/register", 
+async function login (req, res){
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,10 +21,11 @@ app.post("/register", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
-});
+}
 
 // User Login
-app.post("/login", async (req, res) => {
+//app.post("/login", 
+async function register (req, res){
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -52,8 +47,7 @@ app.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
-});
+}
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+module.exports = {login, register};
