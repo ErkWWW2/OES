@@ -8,19 +8,21 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Install react-router-dom:
-You can install react-router-dom, express, and axios using npm:
+You can install react-router-dom, express, axios, mongodb, and mongoose using npm:
 ```
 npm install 
 npm install react-router-dom
 npm install express
 npm install axios
+npm install mongodb
+npm install mongoose
 ```
 
 You will also need material UI's date picker with date library and react-select which can also be installed using npm:
 ```
 npm install @mui/x-date-pickers
 npm install date-fns
-npm i --save react-select
+npm install react-select
 ```
 <br>
 

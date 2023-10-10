@@ -11,21 +11,27 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
   const [eventsForMonth, setEventsForMonth] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchEventsForMonth = (year, month) => {
+  const fetchEventsForMonth = async (year, month) => {
     setIsLoading(true);
 
-    axios
+    try {
+      axios
       .get(`/api/events/${userId}/${year}/${month + 1}`)
       .then((response) => {
         const events = response.data;
-
         setEventsForMonth(events);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching user events: ', error);
-        setIsLoading(false);
       });
+    }
+    catch (error) {
+      console.error('Error fetching events: ', error);
+    }
+    finally
+    {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -41,17 +47,17 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
       <Calendar
         onChange={setSelectedDate} // Change state
         value={selectedDate} // Value to send to state
-        onActiveStartDateChange={({action, activeStartDate, value, view}) => {
+        onActiveStartDateChange={({ activeStartDate }) => {
           fetchEventsForMonth(activeStartDate.getFullYear(), activeStartDate.getMonth());
         }}
         tileContent={({ date, view }) => {
           if (view === 'month')
           {
             // Check if events have loaded and eventsForMonth is defined
-            if (!isLoading && eventsForMonth != undefined) {  
+            if (!isLoading && eventsForMonth !== undefined) {  
               const eventsForDate = eventsForMonth.filter((item) => (item.date + (31 * item.month)) === (date.getDate() + (31 * date.getMonth())));
               
-              if (eventsForDate != undefined) {
+              if (eventsForDate !== undefined) {
                 return (
                   <div>
                     {eventsForDate.map((event) => (
@@ -80,37 +86,6 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
       />
     </div>
   );
-  
-  /*
-  return (
-    <div className='calendarContainer'>
-      <Calendar 
-        onChange={setSelectedDate} // Change state 
-        value={selectedDate}       // Value to send to state
-        tileContent={({ date, view }) => {
-          if (view === 'month') {
-            const idArray = eventController.getEventIdsForDate(date); // Get events on date
-
-            // Map eventsId that the user has permisson to view
-            if (idArray) {
-              return(
-                <div>
-                  {idArray.filter(id => eventController.getEventById(id).part.includes(userController.logUser)).map(id => (
-                    <div className='calEvent'>
-                      {eventController.getNameById(id)}
-                    </div>
-                  ))}
-                </div>
-              );
-            }
-            else
-              return;
-          }
-        }}
-      />
-    </div>
-  );
-  */
 }
 
 export default CalendarComponent;

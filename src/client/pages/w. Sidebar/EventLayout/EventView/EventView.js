@@ -17,7 +17,7 @@ function EventComponent({ setSelectedEvent }) {
 
     useEffect(() => {
         // GET HTTP request to /api/events/:userId
-        axios.get(`/api/events/${userId}`)
+        axios.get(`/api/events/u/${userId}`)
             .then(response => {
                 setUserEvents(response.data.events);
 

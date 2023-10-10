@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EventLayout from "../../EventLayout/EventLayout";
 import CalendarLayout from "../../CalendarLayout/CalendarLayout";
 import VoteDialog from '../../../Dialogs/VoteDialog/VoteDialog';
 import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
 import { useUserContext } from "../../../../../controllers/UserController";
-import { useEventContext } from "../../../../../controllers/EventController";
+import axios from "axios";
 import './SidebarBody.css';
 
 // This function takes a day number as input and returns it with a suffix of st, nd, rd, or th.
@@ -34,8 +34,11 @@ function getWeekDay(date) {
 
 
 function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
+  const [idArray, setIdArray] = useState([]);
+  const [event, setEvent] = useState(null);
+  const [eventDates, setEventDates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const eventController = useEventContext();  // Get event context
   const userController = useUserContext();    // Get user context
 
   // Options for date formatting
@@ -54,12 +57,59 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const day = selectedDate ? getDayWithSuffix(selectedDate.getDate()) : '';
   const weekday = selectedDate ? getWeekDay(selectedDate) : '';
 
-  // Get events for the selected date, if these is one
-  const idArray = selectedDate ? eventController.getEventIdsForDate(selectedDate): '';
+    // Fetch event IDs for the selected date
+    useEffect(() => {
+      setIsLoading(true);
+      if (selectedDate) {
+        axios
+          .get(`/api/event-dates/IDN/${selectedDate}`)
+          .then((response) => {
+            setIdArray(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching event IDs for date: ', error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    }, [selectedDate]);
   
-  // Get details and dates for selected event, if there is one
-  const event = selectedEvent ? eventController.getEventById(selectedEvent): '';
-  const eventDates = selectedEvent ? eventController.getDatesForEvent(selectedEvent): '';
+    // Fetch event details for the selected event
+    useEffect(() => {
+      setIsLoading(true);
+      if (selectedEvent) {
+        axios
+          .get(`/api/events/${selectedEvent}`)
+          .then((response) => {
+            setEvent(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching event by ID: ', error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    }, [selectedEvent]);
+  
+    // Fetch event dates for the selected event
+    useEffect(() => {
+      setIsLoading(true);
+      if (selectedEvent) {
+        axios
+          .get(`/api/event-dates/${selectedEvent}`)
+          .then((response) => {
+            setEventDates(response.data);
+          })
+          .catch((error) => {
+            console.error('Error fetching event dates by ID: ', error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
+    }, [selectedEvent]);
 
   // If the current view is to show the calendar
   if (currentView === CalendarLayout)
@@ -74,14 +124,18 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                 {<br />}
                 {<span className='weekday'> {weekday} </span>}
             </p>}
-            {<div>
-              {idArray.map(id => (
-                <div className='calEvent'>
-                  <h1>{/*eventController.getNameById(id)*/}</h1>
-                  <p>{/*eventController.getDescById(id)*/}</p>
-                </div>
-              ))}
-            </div>}
+            { isLoading ? (
+            <p>...Loading</p>
+            ) : (
+              <div>
+                {idArray.map(event => (
+                  <div className='calEvent' key={event.eventId}>
+                    <h1>{event.name}</h1>
+                    <p>{event.desc}</p>
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
     );
   }
@@ -90,18 +144,22 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
     if (selectedEvent)
     {
         return(
-            <div className="calEvent">
-                {<h1 className="name">{event.name}</h1>}
-                {<p className="desc">{event.desc}</p>}
+            isLoading ? (
+              <p>...Loading</p>
+            ) : (
+              <div className="calEvent">
+                {<h1 className="name">{event[0].name}</h1>}
+                {<p className="desc">{event[0].desc}</p>}
                 {eventDates?.map(item => (
                     <p key={item}>
                         <span>{'[' + item.votes + '] '}</span>
-                        <span>{item.start.toLocaleDateString('en-GB', options) + " - " + item.end.toLocaleDateString('en-GB', options)}</span>
+                        <span>{(new Date(item.start)).toLocaleDateString('en-GB', options) + " - " + (new Date(item.end)).toLocaleDateString('en-GB', options)}</span>
                     </p>
                 ))}
-                {event.org.includes(userController.logUser) ? EditDialog(event)
-                                                            : VoteDialog(event)}
-            </div>
+                {/*event.org.includes(userController.logUser) ? EditDialog(event)
+                                                            : VoteDialog(event)*/}
+              </div>
+            )
         );
     }
     else {
