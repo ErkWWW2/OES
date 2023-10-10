@@ -12,7 +12,7 @@ const LoginController = () => {
 
   const handleSubmit = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:3000/login', { username, password });
+      const response = await axios.post('http://localhost:3001/api/login', { username, password });
 
       if (response.status == 200) {
         // If the response indicates success, navigate to the appropriate page

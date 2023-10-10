@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const eventRoutes = require("./routes/EventRoutes");
 const testRoutes = require("./routes/TestRoutes");
 const path = require("path");
+const cors = require("cors");
 
 // Variables for the port of the app
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Variables to connect to the database
 const username = encodeURIComponent("Erik");
@@ -32,11 +33,19 @@ db.once('open', () => {
 });
 
 // Starts the web application
-app.use(express.static("build"));
+app.use(express.json());
 
 // Get routes and middleware
 app.use("/api", eventRoutes);
 app.use("/test", testRoutes);
+app.use(
+  cors({
+      origin: [`http://localhost:${3001}`],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+  })
+);
+
 
 // Start listening on the specified port
 app.listen(port, () => {
