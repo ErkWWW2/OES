@@ -8,11 +8,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## Install react-router-dom:
-You can install react-router-dom, express, and axios using npm:
+You can install react-router-dom, express, epress-session and axios using npm:
 ```
 npm install 
 npm install react-router-dom
 npm install express
+npm install express-session
 npm install axios
 ```
 

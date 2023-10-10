@@ -23,7 +23,7 @@ app.use(session({
 app.use(express.static("build"));
 
 app.use("/api", eventRoutes);
-app.use("/api1", loginRoutes);
+app.use("/api_user", loginRoutes);
 app.use("/test", testRoutes);
 
 app.listen(port, () => {
