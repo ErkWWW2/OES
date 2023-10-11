@@ -42,6 +42,7 @@ app.use(express.json());
 app.use("/api", eventRoutes);
 app.use("/test", testRoutes);
 app.use("/login", loginRoutes);
+app.set()
 
 
 // Start listening on the specified port

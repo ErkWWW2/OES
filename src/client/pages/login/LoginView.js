@@ -15,14 +15,14 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.get(`/login/login/${name}/${password}`);
-
+      const response = await axios.get(`/login/login/${name}/${password}`, {name, password});
+      
       if (response.status == 200) {
         // If the response indicates success, navigate to the appropriate page
         navigate('/calendar');
       } else {
-        // If the response indicates failure, display an error message
-        setErrors({ ...errors, password: response.data.message });
+        // If the response indicates failure, display an error messag
+        setErrors("Invalid credentials");
       }
     } catch (error) {
       console.error(error.response.data.message);

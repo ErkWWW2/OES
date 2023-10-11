@@ -2,7 +2,7 @@ import './App.css';
 import { } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './pages/login/LoginView';
-import RegistrationPage from '../controllers/RegistrationPage';
+import RegistrationForm from './pages/login/LoginCreateAccount';
 import ProfilePage from './pages/UserConfg/UserConfigure';
 import CalendarLayout from './pages/w. Sidebar/CalendarLayout/CalendarLayout';
 import EventLayout from './pages/w. Sidebar/EventLayout/EventLayout';
@@ -22,7 +22,7 @@ function App() {
             <Route path='/events' element={<EventLayout />} />
             <Route path='/ConfigureProfile' element={<ProfilePage/>}/>
             <Route path='/newEvent' element={<CreateEventLayout />} />
-            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/register" element={<RegistrationForm />} />
           </Routes>
         </div>
       </div>

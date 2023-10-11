@@ -2,16 +2,46 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedText from "../Animated.js";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { validateForm } from "../../model/LoginModel";
 
-function RegistrationForm({ onSubmit, errors }) {
+function RegistrationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
+    const validationErrors = validateForm(name, email, password);
+    setErrors(validationErrors);
     e.preventDefault();
-    onSubmit(name, email, password);
+
+    if (Object.keys(validationErrors).length === 0) {
+      try {
+        const response = await axios.post(`/login/register/${name}/${email}/${password}`, { name,email, password });
+
+        if (response.status == 201) {
+          // If the response indicates success, create the new user
+          //console.log(userController.users);
+
+          // Navigate to the login page
+          navigate("/login");
+        } else {
+          // If the response indicates failure, display an error message
+          setErrors({ ...errors, password: response.data.message });
+        }
+      } catch (error) {
+        console.error(error.response.data.message);
+        // Handle other error cases here, if needed
+      }
+    }
+    console.log(errors.name);
   };
+
+  
+ 
 
   return (
     <div className="Logincontainer">
