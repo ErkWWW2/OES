@@ -278,4 +278,21 @@ async function createEvent(req, res) {
 
 }
 
-module.exports = { getEventForUser, getEventDatesById, getEventsForMonth, getEventIDNForDate, getEventsById, createEvent };
+async function deleteEvent(req, res) {
+  const eventId = req.params.eventId;
+  
+  try {
+    const eventToDelete = await EventDetails.findOneAndRemove({ eventId: eventId });
+    //const deletedEvent = await EventDetails.findByIdAndRemove(eventToDelete._id);
+
+    if(!eventToDelete) {
+      return res.status(404).json({message: 'Event not found'});
+    }
+    res.json({message: 'Event deleted successfully'});
+  }
+  catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+module.exports = { getEventForUser, getEventDatesById, getEventsForMonth, getEventIDNForDate, getEventsById, createEvent, deleteEvent };

@@ -8,5 +8,6 @@ router.get("/events/u/:year/:month", controller.getEventsForMonth);
 router.get("/event-dates/IDN/:date", controller.getEventIDNForDate);
 router.get("/events/:eventId", controller.getEventsById);
 router.post("/create-event/:name/:desc/:part/:org/:start/:end", controller.createEvent);
+router.delete("/delete-event/:eventId", controller.deleteEvent);
 
 module.exports = router;

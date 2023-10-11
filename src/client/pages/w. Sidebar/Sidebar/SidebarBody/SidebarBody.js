@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EventLayout from "../../EventLayout/EventLayout";
 import CalendarLayout from "../../CalendarLayout/CalendarLayout";
-import VoteDialog from '../../../Dialogs/VoteDialog/VoteDialog';
 import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
-import { useUserContext } from "../../../../../controllers/UserController";
 import axios from "axios";
 import './SidebarBody.css';
 
@@ -32,14 +30,22 @@ function getWeekDay(date) {
   return dateFormatter.format(date);
 }
 
+async function handleDelete(selectedEvent) {
+  try {
+    await axios.delete(`/delete-event/${selectedEvent}`, {selectedEvent});
+
+  } catch (error) {
+    console.error(error.response.data.message);
+    // Handle other error cases here, if needed
+  }
+}
+
 
 function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const [idArray, setIdArray] = useState([]);
   const [event, setEvent] = useState(null);
   const [eventDates, setEventDates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const userController = useUserContext();    // Get user context
 
   // Options for date formatting
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
@@ -144,6 +150,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   else if (currentView === EventLayout) {
     if (selectedEvent)
     {
+      console.log(selectedEvent);
         return(
             isLoading ? (
               <p>...Loading</p>
@@ -158,8 +165,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                     </p>
                 ))}
                 {<p>{event.names.join(', ')}</p>}
-                {/*event.org.includes(userController.logUser) ? EditDialog(event)
-                                                            : VoteDialog(event)*/}
+                <button className="delete-button" onClick={() => handleDelete(selectedEvent)}>Delete</button>
               </div>
             )
         );
