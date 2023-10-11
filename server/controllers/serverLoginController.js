@@ -36,11 +36,11 @@ async function login (req, res){
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (!passwordMatch) {
-      return res.status(401).json({ error: "Invalid credentials" });
-    }
+    //if (!passwordMatch) {
+   //   return res.status(401).json({ error: "Invalid credentials" });
+   // }
 
     /*
     const token = jwt.sign({ userId: user._id }, "your-secret-key", {

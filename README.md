@@ -16,6 +16,9 @@ npm install express
 npm install axios
 npm install mongodb
 npm install mongoose
+npm install jsonwebtoken   
+npm install bcrypt   
+
 ```
 
 You will also need material UI's date picker with date library and react-select which can also be installed using npm:
