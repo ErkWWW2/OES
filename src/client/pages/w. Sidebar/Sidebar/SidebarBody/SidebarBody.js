@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EventLayout from "../../EventLayout/EventLayout";
 import CalendarLayout from "../../CalendarLayout/CalendarLayout";
-import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
+//import EditDialog from '../../../Dialogs/EditDialog/EditDialog';
 import axios from "axios";
 import './SidebarBody.css';
 
@@ -46,6 +46,15 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   const [event, setEvent] = useState(null);
   const [eventDates, setEventDates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [currentUserId, setCurrentUserId] = useState(0);
+
+  //Get the current user's ID
+  useEffect(() => {
+    axios.get('/user/getCurrentUserId').then((response) => {
+      setCurrentUserId(response.data.currentUserId);
+    });
+  }, []);
 
   // Options for date formatting
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
@@ -164,7 +173,9 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                     </p>
                 ))}
                 {<p>{event.names.join(', ')}</p>}
-                <button className="delete-button" onClick={() => handleDelete(selectedEvent)}>Delete</button>
+                {currentUserId && event.details[0].org.includes(currentUserId) && (
+                  <button className="delete-button" onClick={() => handleDelete(selectedEvent)}>Delete</button>  
+                )}
               </div>
             )
         );

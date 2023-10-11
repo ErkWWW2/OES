@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const eventRoutes = require("./routes/EventRoutes");
 const testRoutes = require("./routes/TestRoutes");
 const loginRoutes = require("./routes/LoginRoutes");
+const userRoutes = require("./routes/UserRoutes");
 const path = require("path");
 
 // Variables for the port of the app
@@ -61,6 +62,7 @@ app.use(session({
 app.use("/api", eventRoutes);
 app.use("/test", testRoutes);
 app.use("/login", loginRoutes);
+app.use("/user", userRoutes);
 app.set()
 
 

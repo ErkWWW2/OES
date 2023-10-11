@@ -282,12 +282,14 @@ async function deleteEvent(req, res) {
   const eventId = req.params.eventId;
   
   try {
-    const eventToDelete = await EventDetails.findOneAndRemove({ eventId: eventId });
-    //const deletedEvent = await EventDetails.findByIdAndRemove(eventToDelete._id);
+    const eventToDelete = await EventDetails.findOneAndRemove({ eventId: eventId });  //Removes the event with the given ID
 
     if(!eventToDelete) {
       return res.status(404).json({message: 'Event not found'});
     }
+
+    await EventDates.deleteMany({eventId: eventId});  //Deletes all dates associated with the deleted event
+
     res.json({message: 'Event deleted successfully'});
   }
   catch (error) {
