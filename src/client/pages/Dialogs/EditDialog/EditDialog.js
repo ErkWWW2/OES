@@ -12,7 +12,6 @@ import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import { useUserContext } from '../../../../controllers/UserController';
-import { useEventContext } from '../../../../controllers/EventController';
 
 const options = ['<Event options>', '<More event otions>'];
 
@@ -62,7 +61,6 @@ export default function EditDialog(event) {
   const [selectedValue, setSelectedValue] = React.useState(options[1]);
 
   const userController = useUserContext();
-  const eventController = useEventContext();
 
   const handleClickOpen = () => {
     setOpen(true);

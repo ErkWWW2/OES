@@ -31,8 +31,8 @@ function CreateEventForm({ errors, users, setErrors }) {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-                const orgIds    = org.map((item)    => parseInt(item.id));
-                const partIds   = part.map((item)   => parseInt(item.id));
+                const orgIds    = org.map((item)    => item.id);
+                const partIds   = part.map((item)   => item.id);
 
                 const response = await axios.post(`/api/create-event/${name}/${desc}/${partIds}/${orgIds}/${start}/${end}`,);
                 console.log('Event Created: ', response.data);

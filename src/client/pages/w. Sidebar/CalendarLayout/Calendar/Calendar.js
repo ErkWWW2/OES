@@ -7,7 +7,6 @@ import './Calendar.css';
 function CalendarComponent({ selectedDate, setSelectedDate }) {
   const userController = useUserContext();    // Get user context
 
-  const userId = userController.logUser;
   const [eventsForMonth, setEventsForMonth] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,7 +15,7 @@ function CalendarComponent({ selectedDate, setSelectedDate }) {
 
     try {
       axios
-      .get(`/api/events/${userId}/${year}/${month + 1}`)
+      .get(`/api/events/u/${year}/${month + 1}`)
       .then((response) => {
         const events = response.data;
         setEventsForMonth(events);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Grid } from '@mui/material';
-import { useUserContext } from "../../../../../controllers/UserController";
 import './EventView.css';
 
 function EventComponent({ setSelectedEvent }) {
@@ -9,15 +8,12 @@ function EventComponent({ setSelectedEvent }) {
     const [eventDates, setEventDates] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const userController = useUserContext();
-
-    const userId = userController.logUser;
     // Options for date formatting
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
 
     useEffect(() => {
         // GET HTTP request to /api/events/:userId
-        axios.get(`/api/events/u/${userId}`)
+        axios.get(`/api/events/u/`)
             .then(response => {
                 setUserEvents(response.data.events);
 

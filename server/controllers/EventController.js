@@ -10,7 +10,7 @@ Returns:
 */
 async function getEventForUser(req, res)
 {
-    const userId = req.params.userId;   // Get userId from parameters in the request
+    const userId = req.session.user;   // Get userId from parameters in the request
 
     try {
     // Get events from the database
@@ -54,6 +54,7 @@ Returns:
 */
 async function getEventIDNForDate(req, res) {
   const date = req.params.date;
+  const userId = req.session.user;
   
   try {
     const eventDate = new Date(date);
@@ -73,7 +74,9 @@ async function getEventIDNForDate(req, res) {
       eventId: { $in: eventIds }
     });
 
-    const eventData = eventDetails.map((event) => {
+    const userEvents = eventDetails.filter(event => event.part.includes(userId));
+
+    const eventData = userEvents.map((event) => {
       return {
         eventId:  event.eventId,
         name:     event.name,
@@ -81,7 +84,13 @@ async function getEventIDNForDate(req, res) {
       };
     });
 
-    res.json(eventData);
+    if (eventData)
+    {
+      res.json(eventData);
+    }
+    else {
+      res.json("No event on date ;)")
+    }
   }
   catch (error) {
     console.error('Error fetching events: ', error);
@@ -122,7 +131,8 @@ Returns:
       name:   the name of the event
 */
 async function getEventsForMonth(req, res) {
-  const { userId, year, month } = req.params;
+  const { year, month } = req.params;
+  const userId = req.session.user;
 
   try {
     const targetYear = parseInt(year);
@@ -193,17 +203,33 @@ async function createEvent(req, res) {
     if (lastEventDetail) {
       const newId = lastEventDetail.eventId + 1;
 
+      const partArray = [];
+      const orgArray = [];
+      let i = 0;
+
       // Convert the part and org arrays to contain numbers
-      const partArray = part.map(Number);
-      const orgArray = org.map(Number);
+      // i+2 since we are skipping over the ','
+      while (i < part.length)
+      {
+        partArray.push(parseInt(part[i]));
+        i = i + 2;
+      }
+
+      i = 0;
+
+      while (i < org.length)
+      {
+        orgArray.push(parseInt(org[i]));
+        i = i + 2;
+      }
 
       // Create a new EventDetails document
       const eventDetail = new EventDetails({
         eventId: newId,
         name,
         desc,
-        partArray,
-        orgArray,
+        part: partArray,
+        org: orgArray,
       });
 
       // Save the EventDetails document to the database
