@@ -1,15 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./LoginView.css";
 import AnimatedText from "../Animated.js";
 
-function LoginForm({ onSubmit, errors }) {
+function LoginForm() {
+  const [errors, setErrors] = useState({});
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(name, password);
+
+    try {
+      const response = await axios.get(`/login/login/${name}/${password}`);
+
+      if (response.status == 200) {
+        // If the response indicates success, navigate to the appropriate page
+        navigate('/calendar');
+      } else {
+        // If the response indicates failure, display an error message
+        setErrors({ ...errors, password: response.data.message });
+      }
+    } catch (error) {
+      console.error(error.response.data.message);
+      // Handle other error cases here, if needed
+    }
   };
 
   return (

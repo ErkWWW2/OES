@@ -1,8 +1,5 @@
 const User = require("../model/user"); // Import the User model
 
-
-
-
 // User Registration
 //app.post("/register", 
 async function register (req, res){
@@ -26,11 +23,12 @@ async function register (req, res){
 }
 
 // User Login
-//app.post("/login", 
+//app.get("/user/login/:name/:password)", 
 async function login (req, res){
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { name, password } = req.params;
+    // Search if user is in the database
+    const user = await User.findOne({ username: name });
 
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
@@ -46,7 +44,7 @@ async function login (req, res){
      // expiresIn: "1h",
    // });
    // res.status(200).json({ token });
-   res.status(200);
+   res.status(200).json();
   } catch (error) {
     console.log(error);
     console.log("req", req.body);

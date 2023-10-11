@@ -182,4 +182,59 @@ async function getEventsForMonth(req, res) {
   }
 }
 
-module.exports = { getEventForUser, getEventDatesById, getEventsForMonth, getEventIDNForDate, getEventsById };
+async function createEvent(req, res) {
+  const { name, desc, part, org, start, end } = req.params;
+  console.log(name, desc, part, org, start, end);   // Log request in server
+
+  try 
+  {
+    const lastEventDetail = await EventDetails.findOne().sort({ _id: -1 });
+
+    if (lastEventDetail) {
+      const newId = lastEventDetail.eventId + 1;
+
+      // Convert the part and org arrays to contain numbers
+      const partArray = part.map(Number);
+      const orgArray = org.map(Number);
+
+      // Create a new EventDetails document
+      const eventDetail = new EventDetails({
+        eventId: newId,
+        name,
+        desc,
+        partArray,
+        orgArray,
+      });
+
+      // Save the EventDetails document to the database
+      await eventDetail.save();
+
+      // Create a new EventDates document using the eventId from the saved EventDetails
+      const eventDate = new EventDates({
+        eventId: newId,
+        start,
+        end,
+        votes: 0,   // Initialize votes to 0
+        voters: [], // Initialize voters as an empty array
+      });
+      
+      // Save the EventDates document to the database
+      await eventDate.save();
+
+      res.json({ message: 'Event created successfully' });
+
+    } 
+    else 
+    {
+      console.log('EventDetails collection is empty.');
+    }
+  } 
+  catch (error) 
+  {
+    console.error('Error creating event:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+
+}
+
+module.exports = { getEventForUser, getEventDatesById, getEventsForMonth, getEventIDNForDate, getEventsById, createEvent };

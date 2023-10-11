@@ -4,27 +4,73 @@ import makeAnimated from 'react-select/animated';                   // React-sel
 import { DateTimePicker } from '@mui/x-date-pickers';               // Material UI DateTimePicker
 import { LocalizationProvider } from '@mui/x-date-pickers';         // Date Localization
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns' // Date Localization Adapter
+import axios from "axios";
 import "./CreateEventView.css";
 
 
-function CreateEventForm({ onSubmit, errors, users }) {
+function CreateEventForm({ errors, users, setErrors }) {
     // Have states for all variables to be used in creation of event
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [part, setPart] = useState();
-    const [org, setOrg] = useState();
+    const [part, setPart] = useState([]);
+    const [org, setOrg] = useState([]);
 
-    const [start, setStart] = useState();
-    const [end, setEnd] = useState();
+    const [start, setStart] = useState(new Date(''));
+    const [end, setEnd] = useState(new Date(''));
+
+    const [formError, setFormError] = useState(null); // New state for form-level errors
 
     // React-select animation component
     const animatedComponents = makeAnimated();
 
     // Function to call when submit button is pressed
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit(name, desc, part, org, start, end);
+        const validationErrors = validateForm(name, start, end);
+        setErrors(validationErrors);
+
+        if (Object.keys(validationErrors).length === 0) {
+            try {
+                const orgIds    = org.map((item)    => parseInt(item.id));
+                const partIds   = part.map((item)   => parseInt(item.id));
+
+                const response = await axios.post(`/api/create-event/${name}/${desc}/${partIds}/${orgIds}/${start}/${end}`,);
+                console.log('Event Created: ', response.data);
+
+                // Clear form fields after successful submission
+                setName('');
+                setDesc('');
+                setPart([]);
+                setOrg([]);
+                setStart(null);
+                setEnd(null);
+                setFormError(null); // Clear any previous form-level error messages
+            } 
+            catch (error) {
+            // Handle errors
+            console.error('Error creating event:', error);
+            setFormError('Failed to create the event, please try again.'); // Set form-level error message
+            }
+        }
     };
+
+    function validateForm(name, start, end) {
+        const errors = {};
+
+        if (!name) {
+            errors.name = "Name must be filled out!";
+        }
+
+        if (!start) {
+            errors.start = "Your event must have a start!";
+        }
+
+        if (!end) {
+            errors.end = "Your event must have an end";
+        }
+
+        return errors;
+    }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
