@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const UserController = require("../controllers/serverLoginController");
 const controller = require("../controllers/EventController");
 
 router.get("/events/u/:userId", controller.getEventForUser);
