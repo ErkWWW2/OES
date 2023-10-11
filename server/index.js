@@ -32,24 +32,22 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.use(cors());
+
 // Starts the web application
 app.use(express.json());
 
+//app.use(express.static("build"));
 // Get routes and middleware
 app.use("/api", eventRoutes);
 app.use("/test", testRoutes);
-app.use(
-  cors({
-      origin: [`http://localhost:${3001}`],
-      methods: ["GET", "POST", "PUT", "DELETE"],
-      credentials: true,
-  })
-);
+
+
 
 
 // Start listening on the specified port
 app.listen(port, () => {
-  console.log(port);
+  console.log("App listening on port: ", port);
 })
 
 app.get('*', (req, res) => {
