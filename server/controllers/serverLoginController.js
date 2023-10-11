@@ -1,6 +1,6 @@
 const User = require("../model/user"); // Import the User model
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
 
 // User Registration
 //app.post("/register", 
@@ -36,15 +36,17 @@ async function login (req, res){
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    // const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    /*
     const token = jwt.sign({ userId: user._id }, "your-secret-key", {
       expiresIn: "1h",
     });
+    */
     res.status(200).json({ token });
    res.status(200);
   } catch (error) {

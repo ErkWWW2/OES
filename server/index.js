@@ -33,9 +33,6 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-app.use(cors());
-mongoose.set("debug", true);
-
 // Starts the web application
 app.use(express.static("build"));
 app.use(express.json());
