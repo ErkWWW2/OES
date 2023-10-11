@@ -9,8 +9,15 @@ async function register (req, res){
     const { username, email, password } = req.body;
     //const hashedPassword = await bcrypt.hash(password, 10);
 
+    const lastUser = await User.findOne().sort({ _id: -1 });
+
+    const newId = lastUser.eventId + 1;
+
     const user = new User({
+      id: newId,
+      value: newId,
       username,
+      label: username,
       email,
       password: password,
     });
