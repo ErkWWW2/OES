@@ -75,7 +75,7 @@ const mockUsers = [
         username:   'IsacG',
         label:      'IsacG',
         email:      'IsacG@oes.com',
-        password:   'IsacG'
+        password:   '$2b$10$nFZMRthCKuVHfkq6Y/obpeZRoOw7Ivd6zcMi6u/3c6I9u5UyXP3w6'
     },
     {
         id:         2,
@@ -83,7 +83,7 @@ const mockUsers = [
         username:   'ErikW',
         label:      'ErikW',
         email:      'ErikW@oes.com',
-        password:   'ErikW'
+        password:   '$2b$10$wa.OdSRCU8cP1NcJCHB6XOkXAZSAAvk8.37AcMvFKA.I/6iioxv6i'
     },
     {
         id:         3,
@@ -91,7 +91,7 @@ const mockUsers = [
         username:   'SamiN',
         label:      'SamiN',
         email:      'SamiN@oes.com',
-        password:   'SamiN'
+        password:   '$2b$10$3ld8X2HJrOeJLl4Mgj4L7.xDAVUcTjYsJZOGXXWngltqmCvMK0NCK'
     }
 ];
 
