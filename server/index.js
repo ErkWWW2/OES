@@ -9,6 +9,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+
 // Variables to connect to the database
 const username = encodeURIComponent("Erik");
 const password = encodeURIComponent("Xayhmj8KxcU6MZOv");
@@ -33,6 +34,7 @@ db.once('open', () => {
 });
 
 app.use(cors());
+mongoose.set("debug", true);
 
 // Starts the web application
 app.use(express.static("build"));
