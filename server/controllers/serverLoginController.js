@@ -1,6 +1,6 @@
 const User = require("../model/user"); // Import the User model
-// const bcrypt = require("bcrypt");
- const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // User Registration
 //app.post("/register", 
@@ -35,20 +35,23 @@ async function register (req, res){
 //app.get("/user/login/:name/:password)", 
 async function login (req, res){
   try {
-    console.log("user try to login");
+    console.log("user attempted to login");
     const { name, password } = req.params;
     // Search if user is in the database
     const user = await User.findOne({ username: name });
+
+    console.log(user);
 
     if (!user) {
       return res.status(401).json({ errorMessage: "Invalid credentials" });
     }
 
-   // const passwordMatch = await bcrypt.compare(password, user.password);
+    // This currently causes an error due to the admin passwords not being encrypted
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    //if (!passwordMatch) {
-   //   return res.status(401).json({ error: "Invalid credentials" });
-   // }
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
     
     res.status(200);
 

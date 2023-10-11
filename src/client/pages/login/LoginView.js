@@ -6,7 +6,7 @@ import "./LoginView.css";
 import AnimatedText from "../Animated.js";
 
 function LoginForm() {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -14,19 +14,26 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.get(`/login/login/${name}/${password}`, {name, password});
-      
-      if (response.status == 200) {
-        // If the response indicates success, navigate to the appropriate page
-        navigate('/calendar');
-      } else {
-        // If the response indicates failure, display an error messag
+    if (name !== "" && password !== "")
+    {
+      try {
+        const response = await axios.get(`/login/login/${name}/${password}`, {name, password});
+        
+        if (response.status == 200) {
+          // If the response indicates success, navigate to the appropriate page
+          navigate('/calendar');
+        } 
+        else {
+          // If the response indicates failure, display an error messag
+          setErrors("Invalid credentials");
+        }
+      } catch (error) {
         setErrors("Invalid credentials");
+        // Handle other error cases here, if needed
       }
-    } catch (error) {
-      console.error(error.response.data.message);
-      // Handle other error cases here, if needed
+    }
+    else {
+      setErrors("Credentials missing");
     }
   };
 
@@ -47,7 +54,7 @@ function LoginForm() {
                 placeholder="Enter your name"
               />
             </div>
-            {errors.name && <div className="error">{errors.name}</div>}
+            {/*errors.name && <div className="error">{errors.name}</div>*/}
 
             <div className="LoginformGroup">
               <input
@@ -60,7 +67,7 @@ function LoginForm() {
                 placeholder="Enter your password"
               />
             </div>
-            {errors.password && <div className="Loginerror">{errors.password}</div>}
+            {errors && <div className="Loginerror">{errors}</div>}
 
             <input type="submit" value="Submit" className="LoginsubmitButton" />
           </form>
