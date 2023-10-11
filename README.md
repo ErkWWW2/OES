@@ -13,6 +13,7 @@ You can install react-router-dom, express, axios, mongodb, and mongoose using np
 npm install 
 npm install react-router-dom
 npm install express
+npm install express-session
 npm install axios
 npm install mongodb
 npm install mongoose

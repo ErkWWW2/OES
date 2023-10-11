@@ -1,5 +1,7 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBSessionStore = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
 const eventRoutes = require("./routes/EventRoutes");
 const testRoutes = require("./routes/TestRoutes");
 const loginRoutes = require("./routes/LoginRoutes");
@@ -21,6 +23,11 @@ mongoose.connect(`mongodb+srv://${username}:${password}@${cluster}/?retryWrites=
     useUnifiedTopology: true,
 });
 
+const sessionStore = new MongoDBSessionStore({
+  uri: `mongodb+srv://${username}:${password}@${cluster}/?retryWrites=true&w=majority`,
+  collection: 'sessions', // Name of the collection where sessions will be stored
+});
+
 const db = mongoose.connection;
 
 // Start the database
@@ -36,6 +43,14 @@ db.once('open', () => {
 // Starts the web application
 app.use(express.static("build"));
 app.use(express.json());
+
+//Set up of session
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+}));
 
 //app.use(express.static("build"));
 // Get routes and middleware

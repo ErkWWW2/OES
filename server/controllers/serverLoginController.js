@@ -42,9 +42,11 @@ async function login (req, res){
     //if (!passwordMatch) {
    //   return res.status(401).json({ error: "Invalid credentials" });
    // }
-   res.status(200).json({ token });
-   res.status(200);
+    res.status(200).json({ token });
+    res.status(200);
     
+    req.session.user = user.id;
+
     const token = jwt.sign({ userId: user._id }, "your-secret-key", {
       expiresIn: "1h",
     });
