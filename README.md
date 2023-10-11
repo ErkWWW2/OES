@@ -17,6 +17,7 @@ npm install express-session
 npm install axios
 npm install mongodb
 npm install mongoose
+npm install connect-mongodb-session
 npm install jsonwebtoken   
 npm install bcrypt   
 
