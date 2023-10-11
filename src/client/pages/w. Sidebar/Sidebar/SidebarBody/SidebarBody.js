@@ -32,7 +32,7 @@ function getWeekDay(date) {
 
 async function handleDelete(selectedEvent) {
   try {
-    await axios.delete(`/delete-event/${selectedEvent}`, {selectedEvent});
+    await axios.delete(`/api/delete/${selectedEvent}`);
 
   } catch (error) {
     console.error(error.response.data.message);
@@ -150,7 +150,6 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
   else if (currentView === EventLayout) {
     if (selectedEvent)
     {
-      console.log(selectedEvent);
         return(
             isLoading ? (
               <p>...Loading</p>
