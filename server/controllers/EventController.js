@@ -1,5 +1,6 @@
 const EventDetails = require("../model/eventDetails");
 const EventDates = require("../model/eventDates");
+const User = require("../model/user");
 
 /*
 Method to get events for user (User is participant)
@@ -110,7 +111,21 @@ async function getEventsById(req, res) {
   
   try {
     const eventDetails = await EventDetails.find({ eventId: eventId });
-    res.json(eventDetails);
+
+    const partNames = [];
+    
+    for (let i = 0; i < eventDetails[0].part.length; i++)
+    {
+      const partUser = await User.find({ id: eventDetails[0].part[i] });
+      partNames.push(partUser[0].username);
+    }
+
+    const combinedData = {
+      details: eventDetails,
+      names: partNames,
+    };
+
+    res.json(combinedData);
   }
   catch (error) {
     console.error('Error fetching events: ', error);
@@ -252,7 +267,7 @@ async function createEvent(req, res) {
     } 
     else 
     {
-      console.log('EventDetails collection is empty.');
+      console.log('Collection is empty.');
     }
   } 
   catch (error) 

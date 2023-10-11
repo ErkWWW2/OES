@@ -60,7 +60,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
     // Fetch event IDs for the selected date
     useEffect(() => {
       setIsLoading(true);
-      if (selectedDate) {
+      if (selectedDate != undefined) {
         axios
           .get(`/api/event-dates/IDN/${selectedDate}`)
           .then((response) => {
@@ -78,7 +78,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
     // Fetch event details for the selected event
     useEffect(() => {
       setIsLoading(true);
-      if (selectedEvent) {
+      if (selectedEvent != undefined) {
         axios
           .get(`/api/events/${selectedEvent}`)
           .then((response) => {
@@ -86,9 +86,6 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
           })
           .catch((error) => {
             console.error('Error fetching event by ID: ', error);
-          })
-          .finally(() => {
-            setIsLoading(false);
           });
       }
     }, [selectedEvent]);
@@ -96,7 +93,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
     // Fetch event dates for the selected event
     useEffect(() => {
       setIsLoading(true);
-      if (selectedEvent) {
+      if (selectedEvent != undefined) {
         axios
           .get(`/api/event-dates/${selectedEvent}`)
           .then((response) => {
@@ -104,12 +101,16 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
           })
           .catch((error) => {
             console.error('Error fetching event dates by ID: ', error);
-          })
-          .finally(() => {
-            setIsLoading(false);
           });
       }
     }, [selectedEvent]);
+
+    useEffect(() => {
+      if (event)
+      {
+        setIsLoading(false);
+      }
+    }, [event]);
 
   // If the current view is to show the calendar
   if (currentView === CalendarLayout)
@@ -148,14 +149,15 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
               <p>...Loading</p>
             ) : (
               <div className="calEvent">
-                {<h1 className="name">{event[0].name}</h1>}
-                {<p className="desc">{event[0].desc}</p>}
+                {<h1 className="name">{event.details[0].name}</h1>}
+                {<p className="desc">{event.details[0].desc}</p>}
                 {eventDates?.map(item => (
                     <p key={item}>
                         <span>{'[' + item.votes + '] '}</span>
                         <span>{(new Date(item.start)).toLocaleDateString('en-GB', options) + " - " + (new Date(item.end)).toLocaleDateString('en-GB', options)}</span>
                     </p>
                 ))}
+                {<p>{event.names.join(', ')}</p>}
                 {/*event.org.includes(userController.logUser) ? EditDialog(event)
                                                             : VoteDialog(event)*/}
               </div>
