@@ -18,7 +18,7 @@ const mockDetails = [
         eventId: 1, 
         name: 'Event 1', 
         desc: 'This event is for testing events the same event on multiple dates', 
-        part: [1,2], 
+        part: [1,2,3], 
         org: [1] 
     },
     { 
