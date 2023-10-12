@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from 'react-select';                                  // React-select
 import makeAnimated from 'react-select/animated';                   // React-select animations
 import { DateTimePicker } from '@mui/x-date-pickers';               // Material UI DateTimePicker
@@ -20,6 +21,8 @@ function CreateEventForm({ errors, users, setErrors }) {
 
     const [formError, setFormError] = useState(null); // New state for form-level errors
 
+    const navigate = useNavigate();
+
     // React-select animation component
     const animatedComponents = makeAnimated();
 
@@ -34,6 +37,8 @@ function CreateEventForm({ errors, users, setErrors }) {
                 const orgIds    = org.map((item)    => item.id);
                 const partIds   = part.map((item)   => item.id);
 
+                // Need some form handling for empty forms
+
                 const response = await axios.post(`/api/create-event/${name}/${desc}/${partIds}/${orgIds}/${start}/${end}`,);
                 console.log('Event Created: ', response.data);
 
@@ -45,6 +50,7 @@ function CreateEventForm({ errors, users, setErrors }) {
                 setStart(null);
                 setEnd(null);
                 setFormError(null); // Clear any previous form-level error messages
+                navigate('/events');
             } 
             catch (error) {
             // Handle errors
