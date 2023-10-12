@@ -30,10 +30,11 @@ function getWeekDay(date) {
   return dateFormatter.format(date);
 }
 
+//This function takes the ID of the selectedEvent and attempts a DELETE-request with the target being the selected event
 async function handleDelete(selectedEvent) {
   try {
     await axios.delete(`/api/delete/${selectedEvent}`);
-
+    window.location.reload(); //Very heavy-handed, but it functions
   } catch (error) {
     console.error(error.response.data.message);
     // Handle other error cases here, if needed
@@ -174,7 +175,7 @@ function SidebarBody ({ selectedDate, selectedEvent, currentView }) {
                 ))}
                 {<p>{event.names.join(', ')}</p>}
                 {currentUserId && event.details[0].org.includes(currentUserId) && (
-                  <button className="delete-button" onClick={() => handleDelete(selectedEvent)}>Delete</button>  
+                  <button className="deleteButton" onClick={() => handleDelete(selectedEvent)}>Delete</button>  
                 )}
               </div>
             )
