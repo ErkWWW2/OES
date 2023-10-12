@@ -78,3 +78,14 @@
         background-color 0.3s, 
         box-shadow 0.2s;
 }
+
+.deleteButton {
+    width: 100%;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.deleteButton:hover {
+    background-color: #7d91a7;
+}
