@@ -13,7 +13,10 @@ async function getCurrentUserId(req, res)
 async function getUserById(req, res)
 {
     try{
-        const user = await User.findOne({id: req.params});
+        console.log(req.params.id);
+        const id = parseInt(req.params.id);
+        const user = await User.findOne({id: id});
+        console.log(user);
         res.json({user});
     }catch(error) {
         console.log(error);
