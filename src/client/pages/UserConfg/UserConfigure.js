@@ -9,6 +9,12 @@ function ProfilePage() {
   //const user = getUserById(logUser);
   const navigate = useNavigate();
 
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
   const [currentUserId, setCurrentUserId] = useState(0);
   const [currentUser, setCurrentUser] = useState();
 
@@ -25,12 +31,16 @@ function ProfilePage() {
   }, [currentUserId]);
 
 
-
-  const [formData, setFormData] = useState({
-    username: currentUser ? currentUser.username : '',
-    email: currentUser ? currentUser.email : '',
-    password: currentUser ? currentUser.password : '',
+  useEffect(() => {
+    if (currentUser) {
+      setFormData({
+        username: currentUser.username,
+        email: currentUser.email,
+        password: currentUser.password,
+      });
+    }
   }, [currentUser]);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +54,13 @@ function ProfilePage() {
     e.preventDefault();
     //// Update the user's profile with formData
     try {
+      
       await axios.put(`/user/updateUser/${currentUserId}/${formData.username}/${formData.email}/${formData.password}`);
+      console.log('Profile updated successfully');
       navigate('/calendar');
     } catch(error){
       console.log(error);
+      navigate('/calendar');
     }
   };
 
