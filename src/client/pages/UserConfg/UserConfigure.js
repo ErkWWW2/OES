@@ -4,29 +4,29 @@ import { useUserContext } from '../../../controllers/UserController';
 import './UserConfigure.css'
 
 function ProfilePage() {
-  const { getUserById, updateUser, logUser } = useUserContext();
-  const user = getUserById(logUser);
-  const navigate = useNavigate();
+  //const { getUserById, updateUser, logUser } = useUserContext();
+  //const user = getUserById(logUser);
+  //const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: user.username,
-    email: user.email,
+    username: "", //user.username,
+    email: "",///user.email,
     password: '',
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+   // const { name, value } = e.target;
+   // setFormData({
+   //   ...formData,
+   //   [name]: value,
+   // });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Update the user's profile with formData
-    updateUser(logUser, formData.username, formData.email, formData.password);
-    navigate('/calendar');
+    //e.preventDefault();
+    //// Update the user's profile with formData
+    //updateUser(logUser, formData.username, formData.email, formData.password);
+    //navigate('/calendar');
   };
 
   return (

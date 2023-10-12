@@ -10,6 +10,7 @@ function LoginForm() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [token, setToken] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +22,9 @@ function LoginForm() {
         
         if (response.status == 200) {
           // If the response indicates success, navigate to the appropriate page
+          setToken(response.data.token);
+          localStorage.setItem('token', token);
+          console.log(token);
           navigate('/calendar');
         } 
         else {
