@@ -11,17 +11,17 @@ import "./CreateEventView.css";
 
 function CreateEventForm({ errors, users, setErrors }) {
     // Have states for all variables to be used in creation of event
-    const [name, setName] = useState('');
-    const [desc, setDesc] = useState('');
-    const [part, setPart] = useState([]);
-    const [org, setOrg] = useState([]);
+    const [name, setName]   = useState('');
+    const [desc, setDesc]   = useState('');
+    const [part, setPart]   = useState([]);
+    const [org, setOrg]     = useState([]);
 
-    const [start, setStart] = useState(new Date(''));
-    const [end, setEnd] = useState(new Date(''));
+    const [start, setStart] = useState();
+    const [end, setEnd]     = useState();
 
     const [formError, setFormError] = useState(null); // New state for form-level errors
 
-    const navigate = useNavigate();
+    const navigate          = useNavigate();
 
     // React-select animation component
     const animatedComponents = makeAnimated();
@@ -29,15 +29,13 @@ function CreateEventForm({ errors, users, setErrors }) {
     // Function to call when submit button is pressed
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = validateForm(name, start, end);
+        const validationErrors = validateForm(name, part, org, start, end);
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length === 0) {
             try {
                 const orgIds    = org.map((item)    => item.id);
                 const partIds   = part.map((item)   => item.id);
-
-                // Need some form handling for empty forms
 
                 const response = await axios.post(`/api/create-event/${name}/${desc}/${partIds}/${orgIds}/${start}/${end}`,);
                 console.log('Event Created: ', response.data);
@@ -60,11 +58,19 @@ function CreateEventForm({ errors, users, setErrors }) {
         }
     };
 
-    function validateForm(name, start, end) {
+    function validateForm(name, part, org, start, end) {
         const errors = {};
 
         if (!name) {
             errors.name = "Name must be filled out!";
+        }
+
+        if (part.length < 1) {
+            errors.part = "There must be at least one participant!";
+        }
+
+        if (org.length < 1) {
+            errors.org = "There must be at least one organizer!";
         }
 
         if (!start) {
@@ -114,6 +120,7 @@ function CreateEventForm({ errors, users, setErrors }) {
                             placeholder="Select participants"
                             options={users}
                         />
+                        {errors.part && <div className="Loginerror">{errors.part}</div>}
 
                         <Select
                             closeMenuOnSelect={false}
@@ -124,6 +131,7 @@ function CreateEventForm({ errors, users, setErrors }) {
                             placeholder="Select organizers"
                             options={part}
                         />
+                        {errors.org && <div className="Loginerror">{errors.org}</div>}
 
                         <DateTimePicker 
                             ampm={false}
