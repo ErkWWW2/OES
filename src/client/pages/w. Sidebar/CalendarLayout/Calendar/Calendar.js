@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import { useUserContext } from '../../../../../controllers/UserController';
 import axios from 'axios';
 import './Calendar.css';
 
 function CalendarComponent({ selectedDate, setSelectedDate }) {
-  const userController = useUserContext();    // Get user context
 
   const [eventsForMonth, setEventsForMonth] = useState();
   const [isLoading, setIsLoading] = useState(true);

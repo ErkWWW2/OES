@@ -4,7 +4,25 @@ import { Link } from "react-router-dom";
 import AnimatedText from "../Animated.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { validateForm } from "../../model/LoginModel";
+
+function validateForm(name, email, password) {
+  const errors = {};
+
+  if (!name) {
+    errors.name = "Name must be filled out!";
+  }
+
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!email.match(emailPattern)) {
+    errors.email = "Invalid email!";
+  }
+
+  if (!password) {
+    errors.password = "Password must be filled out!";
+  }
+  
+  return errors;
+}
 
 function RegistrationForm() {
   const [name, setName] = useState("");
@@ -40,9 +58,6 @@ function RegistrationForm() {
     }
     console.log(errors.name);
   };
-
-  
- 
 
   return (
     <div className="Logincontainer">

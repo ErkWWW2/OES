@@ -9,7 +9,7 @@ import axios from "axios";
 import "./CreateEventView.css";
 
 
-function CreateEventForm({ errors, users, setErrors }) {
+function CreateEventForm({ errors, setErrors }) {
     // Have states for all variables to be used in creation of event
     const [name, setName]   = useState('');
     const [desc, setDesc]   = useState('');
@@ -118,7 +118,6 @@ function CreateEventForm({ errors, users, setErrors }) {
                             isMulti
                             className="selector" 
                             placeholder="Select participants"
-                            options={users}
                         />
                         {errors.part && <div className="Loginerror">{errors.part}</div>}
 
